@@ -35,6 +35,21 @@
   .svc-tag{display:inline-flex;align-items:center;gap:10px;color:rgba(255,255,255,.82);font-size:14px;font-weight:500;padding:0 36px;white-space:nowrap}
   .svc-tag::before{content:"◆";color:var(--gold);font-size:10px}
 
+
+  /* Legal modals */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(6,21,42,.85);z-index:200;padding:24px 16px;overflow-y:auto;backdrop-filter:blur(4px)}
+  .modal-overlay.open{display:flex;align-items:flex-start;justify-content:center}
+  .modal-box{background:#fff;border-radius:16px;max-width:760px;width:100%;padding:48px 52px;position:relative;margin:auto}
+  .modal-close{position:absolute;top:18px;right:20px;background:none;border:none;font-size:26px;cursor:pointer;color:var(--muted);line-height:1}
+  .modal-close:hover{color:var(--navy)}
+  .modal-box h2{font-family:'Fraunces',serif;color:var(--navy);font-size:28px;margin-bottom:6px}
+  .modal-box .modal-date{color:var(--muted);font-size:13px;margin-bottom:28px;display:block}
+  .modal-box h3{font-family:'Fraunces',serif;color:var(--navy);font-size:17px;margin:24px 0 8px}
+  .modal-box p,.modal-box li{color:#3a4558;font-size:15px;line-height:1.75;margin-bottom:8px}
+  .modal-box ul{padding-left:20px;margin-bottom:8px}
+  .modal-box a{color:var(--gold);text-decoration:underline}
+  @media(max-width:600px){.modal-box{padding:32px 22px}}
+
   /* Topbar */
   .topbar{background:var(--navy-deep);color:rgba(255,255,255,.78);font-size:13px;padding:8px 0}
   .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
@@ -349,7 +364,13 @@
     <a href="https://wa.me/2250574199760" target="_blank" aria-label="WhatsApp">✆</a>
   </div>
 </div>
-<div class="wrap fbottom" data-fr="© 2026 AFRICAViT SARL — Tous droits réservés · Abidjan, Côte d'Ivoire" data-en="© 2026 AFRICAViT SARL — All rights reserved · Abidjan, Côte d'Ivoire">© 2026 AFRICAViT SARL — Tous droits réservés · Abidjan, Côte d'Ivoire</div>
+<div class="wrap fbottom">
+  <span data-fr="© 2026 AFRICAViT SARL — Tous droits réservés · Abidjan, Côte d'Ivoire" data-en="© 2026 AFRICAViT SARL — All rights reserved · Abidjan, Côte d'Ivoire">© 2026 AFRICAViT SARL — Tous droits réservés · Abidjan, Côte d'Ivoire</span>
+  <span style="margin:0 10px;opacity:.4">·</span>
+  <a href="#" onclick="openMod('modal-legal');return false;" style="color:rgba(255,255,255,.55);font-size:13px;text-decoration:none" data-fr="Mentions légales" data-en="Legal notices">Mentions légales</a>
+  <span style="margin:0 8px;opacity:.4">·</span>
+  <a href="#" onclick="openMod('modal-privacy');return false;" style="color:rgba(255,255,255,.55);font-size:13px;text-decoration:none" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a>
+</div>
 </footer>
 
 <script>
@@ -401,6 +422,98 @@
       navlinks.style.display = navlinks.style.display === 'flex' ? 'none' : 'flex';
     });
   }
+
+  function openMod(id){
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow='hidden';
+    // Apply current language to modal
+    const lang = document.getElementById('b-fr').classList.contains('active') ? 'fr' : 'en';
+    document.getElementById(id).querySelectorAll('[data-fr]').forEach(el=>{
+      const val = lang==='fr' ? el.dataset.fr : el.dataset.en;
+      if(val!==undefined) el.innerHTML=val;
+    });
+  }
+  function closeMod(id){
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open')); });
+
 </script>
+
+<!-- Modal Mentions légales -->
+<div id="modal-legal" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-legal')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-legal')">×</button>
+    <h2 data-fr="Mentions légales" data-en="Legal notices">Mentions légales</h2>
+    <span class="modal-date" data-fr="Dernière mise à jour : juin 2026" data-en="Last updated: June 2026">Dernière mise à jour : juin 2026</span>
+
+    <h3 data-fr="Éditeur du site" data-en="Website publisher">Éditeur du site</h3>
+    <p><strong>AFRICAViT SARL</strong><br>
+    Cocody-Angré, Lot 4527 — Abidjan, Côte d'Ivoire<br>
+    Tél : +225 27 22 35 33 27 &nbsp;|&nbsp; WhatsApp : +225 05 74 19 97 60<br>
+    Email : <a href="mailto:contact@africavit.com">contact@africavit.com</a></p>
+
+    <h3 data-fr="Directeur de la publication" data-en="Publication director">Directeur de la publication</h3>
+    <p data-fr="Le représentant légal d'AFRICAViT SARL." data-en="The legal representative of AFRICAViT SARL.">Le représentant légal d'AFRICAViT SARL.</p>
+
+    <h3 data-fr="Hébergement" data-en="Hosting">Hébergement</h3>
+    <p>Netlify, Inc. — 512 2nd Street, Suite 200, San Francisco, CA 94107, USA<br>
+    <a href="https://www.netlify.com" target="_blank">www.netlify.com</a></p>
+
+    <h3 data-fr="Propriété intellectuelle" data-en="Intellectual property">Propriété intellectuelle</h3>
+    <p data-fr="L'ensemble des contenus de ce site (textes, images, logos, graphismes) est la propriété exclusive d'AFRICAViT SARL ou de ses partenaires. Toute reproduction, même partielle, est interdite sans autorisation préalable écrite." data-en="All content on this site (texts, images, logos, graphics) is the exclusive property of AFRICAViT SARL or its partners. Any reproduction, even partial, is prohibited without prior written authorization.">L'ensemble des contenus de ce site (textes, images, logos, graphismes) est la propriété exclusive d'AFRICAViT SARL ou de ses partenaires. Toute reproduction, même partielle, est interdite sans autorisation préalable écrite.</p>
+
+    <h3 data-fr="Limitation de responsabilité" data-en="Limitation of liability">Limitation de responsabilité</h3>
+    <p data-fr="AFRICAViT SARL s'efforce de maintenir les informations publiées à jour et exactes, mais ne saurait être tenue responsable des erreurs ou omissions, ni des dommages résultant de l'utilisation du site." data-en="AFRICAViT SARL strives to keep published information up to date and accurate, but cannot be held liable for errors or omissions, or for damages resulting from the use of the site.">AFRICAViT SARL s'efforce de maintenir les informations publiées à jour et exactes, mais ne saurait être tenue responsable des erreurs ou omissions, ni des dommages résultant de l'utilisation du site.</p>
+
+    <h3 data-fr="Droit applicable" data-en="Applicable law">Droit applicable</h3>
+    <p data-fr="Le présent site est soumis au droit ivoirien. Tout litige relatif à son utilisation relève de la compétence exclusive des tribunaux d'Abidjan, Côte d'Ivoire." data-en="This site is subject to Ivorian law. Any dispute relating to its use falls under the exclusive jurisdiction of the courts of Abidjan, Côte d'Ivoire.">Le présent site est soumis au droit ivoirien. Tout litige relatif à son utilisation relève de la compétence exclusive des tribunaux d'Abidjan, Côte d'Ivoire.</p>
+  </div>
+</div>
+
+<!-- Modal Politique de confidentialité -->
+<div id="modal-privacy" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-privacy')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-privacy')">×</button>
+    <h2 data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</h2>
+    <span class="modal-date" data-fr="Dernière mise à jour : juin 2026" data-en="Last updated: June 2026">Dernière mise à jour : juin 2026</span>
+
+    <h3 data-fr="Responsable du traitement" data-en="Data controller">Responsable du traitement</h3>
+    <p><strong>AFRICAViT SARL</strong> — Cocody-Angré, Lot 4527, Abidjan, Côte d'Ivoire<br>
+    Email : <a href="mailto:contact@africavit.com">contact@africavit.com</a></p>
+
+    <h3 data-fr="Données collectées" data-en="Data collected">Données collectées</h3>
+    <p data-fr="Lors de l'utilisation du formulaire de contact, nous collectons :" data-en="When using the contact form, we collect:">Lors de l'utilisation du formulaire de contact, nous collectons :</p>
+    <ul>
+      <li data-fr="Nom complet" data-en="Full name">Nom complet</li>
+      <li data-fr="Adresse email" data-en="Email address">Adresse email</li>
+      <li data-fr="Sujet et contenu du message" data-en="Subject and message content">Sujet et contenu du message</li>
+    </ul>
+
+    <h3 data-fr="Finalité du traitement" data-en="Purpose of processing">Finalité du traitement</h3>
+    <p data-fr="Les données collectées sont utilisées uniquement pour répondre à vos demandes et, avec votre consentement, pour vous envoyer des informations sur nos services." data-en="The data collected is used solely to respond to your requests and, with your consent, to send you information about our services.">Les données collectées sont utilisées uniquement pour répondre à vos demandes et, avec votre consentement, pour vous envoyer des informations sur nos services.</p>
+
+    <h3 data-fr="Durée de conservation" data-en="Retention period">Durée de conservation</h3>
+    <p data-fr="Vos données sont conservées pendant 3 ans à compter de notre dernier contact, puis supprimées." data-en="Your data is retained for 3 years from our last contact, then deleted.">Vos données sont conservées pendant 3 ans à compter de notre dernier contact, puis supprimées.</p>
+
+    <h3 data-fr="Vos droits" data-en="Your rights">Vos droits</h3>
+    <p data-fr="Conformément à la loi ivoirienne sur la protection des données et au RGPD européen, vous disposez des droits suivants :" data-en="In accordance with Ivorian data protection law and the European GDPR, you have the following rights:">Conformément à la loi ivoirienne sur la protection des données et au RGPD européen, vous disposez des droits suivants :</p>
+    <ul>
+      <li data-fr="Droit d'accès à vos données" data-en="Right of access to your data">Droit d'accès à vos données</li>
+      <li data-fr="Droit de rectification" data-en="Right of rectification">Droit de rectification</li>
+      <li data-fr="Droit à l'effacement (droit à l'oubli)" data-en="Right to erasure (right to be forgotten)">Droit à l'effacement (droit à l'oubli)</li>
+      <li data-fr="Droit d'opposition au traitement" data-en="Right to object to processing">Droit d'opposition au traitement</li>
+    </ul>
+    <p data-fr="Pour exercer ces droits, contactez-nous à :" data-en="To exercise these rights, contact us at:">Pour exercer ces droits, contactez-nous à : <a href="mailto:contact@africavit.com">contact@africavit.com</a></p>
+
+    <h3 data-fr="Cookies" data-en="Cookies">Cookies</h3>
+    <p data-fr="Ce site n'utilise pas de cookies de traçage ou publicitaires. Seuls des cookies techniques essentiels au bon fonctionnement du site peuvent être utilisés." data-en="This site does not use tracking or advertising cookies. Only technical cookies essential to the proper functioning of the site may be used.">Ce site n'utilise pas de cookies de traçage ou publicitaires. Seuls des cookies techniques essentiels au bon fonctionnement du site peuvent être utilisés.</p>
+
+    <h3 data-fr="Hébergement" data-en="Hosting">Hébergement</h3>
+    <p data-fr="Ce site est hébergé par Netlify (San Francisco, USA). Pour leur politique de confidentialité :" data-en="This site is hosted by Netlify (San Francisco, USA). For their privacy policy:">Ce site est hébergé par Netlify (San Francisco, USA). Pour leur politique de confidentialité : <a href="https://www.netlify.com/privacy/" target="_blank">netlify.com/privacy</a></p>
+  </div>
+</div>
+
 </body>
 </html>
