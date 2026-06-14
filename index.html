@@ -26,6 +26,15 @@
   .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
+
+  /* Services marquee ticker */
+  .svc-ticker{background:var(--navy-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;overflow:hidden}
+  .svc-ticker-track{display:flex;gap:0;width:max-content;animation:marquee 32s linear infinite}
+  .svc-ticker-track:hover{animation-play-state:paused}
+  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .svc-tag{display:inline-flex;align-items:center;gap:10px;color:rgba(255,255,255,.82);font-size:14px;font-weight:500;padding:0 36px;white-space:nowrap}
+  .svc-tag::before{content:"◆";color:var(--gold);font-size:10px}
+
   /* Topbar */
   .topbar{background:var(--navy-deep);color:rgba(255,255,255,.78);font-size:13px;padding:8px 0}
   .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
@@ -84,6 +93,8 @@
   .sec-head p{color:var(--muted);font-size:17px}
 
   /* Services grid */
+    .svc-img{width:100%;height:170px;object-fit:cover;border-radius:10px 10px 0 0;display:block;margin:-34px -30px 20px -30px;width:calc(100% + 60px)}
+  .svc{overflow:hidden}
   .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
   .svc{background:var(--cream);padding:34px 30px;transition:background .3s}
   .svc:hover{background:#fff}
@@ -169,7 +180,7 @@
 <body>
 
 <!-- Topbar -->
-<div class="topbar"><div class="wrap">
+<div id="top" class="topbar"><div class="wrap">
   <span data-fr="🌍 Afrique ↔ Europe · Asie · Amériques" data-en="🌍 Africa ↔ Europe · Asia · Americas">🌍 Afrique ↔ Europe · Asie · Amériques</span>
 </div></div>
 
@@ -221,6 +232,9 @@
 </div></div>
 
 
+
+<!-- Services Ticker -->
+<div class="svc-ticker"><div class="svc-ticker-track"><span class="svc-tag" data-fr="Représentation commerciale" data-en="Commercial representation">Représentation commerciale</span><span class="svc-tag" data-fr="Conseil stratégique" data-en="Strategic consulting">Conseil stratégique</span><span class="svc-tag" data-fr="Support administratif & fiscal" data-en="Administrative & fiscal support">Support administratif & fiscal</span><span class="svc-tag" data-fr="Foncier agricole" data-en="Agricultural land">Foncier agricole</span><span class="svc-tag" data-fr="Logistique" data-en="Logistics">Logistique</span><span class="svc-tag" data-fr="Ressources humaines" data-en="Human resources">Ressources humaines</span><span class="svc-tag" data-fr="Promotion des investissements" data-en="Investment promotion">Promotion des investissements</span><span class="svc-tag" data-fr="Import / Export général" data-en="General import / export">Import / Export général</span><span class="svc-tag" data-fr="Représentation commerciale" data-en="Commercial representation">Représentation commerciale</span><span class="svc-tag" data-fr="Conseil stratégique" data-en="Strategic consulting">Conseil stratégique</span><span class="svc-tag" data-fr="Support administratif & fiscal" data-en="Administrative & fiscal support">Support administratif & fiscal</span><span class="svc-tag" data-fr="Foncier agricole" data-en="Agricultural land">Foncier agricole</span><span class="svc-tag" data-fr="Logistique" data-en="Logistics">Logistique</span><span class="svc-tag" data-fr="Ressources humaines" data-en="Human resources">Ressources humaines</span><span class="svc-tag" data-fr="Promotion des investissements" data-en="Investment promotion">Promotion des investissements</span><span class="svc-tag" data-fr="Import / Export général" data-en="General import / export">Import / Export général</span></div></div>
 <!-- Welcome -->
 <section class="welcome" id="bienvenue"><div class="wrap">
   <div class="welcome-grid">
@@ -257,14 +271,14 @@
     <p data-fr="Huit domaines d'expertise pour faire avancer vos affaires entre l'Afrique et le reste du monde." data-en="Eight areas of expertise to move your business between Africa and the world.">Huit domaines d'expertise pour faire avancer vos affaires entre l'Afrique et le reste du monde.</p>
   </div>
   <div class="svc-grid reveal">
-    <div class="svc"><div class="num">01</div><h3 data-fr="Représentation commerciale" data-en="Commercial representation">Représentation commerciale</h3><p data-fr="Mise en relation des entreprises africaines avec des partenaires internationaux." data-en="Connecting African companies with international partners.">Mise en relation des entreprises africaines avec des partenaires internationaux.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="svc"><div class="num">02</div><h3 data-fr="Conseil stratégique" data-en="Strategic consulting">Conseil stratégique</h3><p data-fr="Accompagnement au développement Afrique ↔ Europe, Asie et Amériques." data-en="Development support across Africa ↔ Europe, Asia and the Americas.">Accompagnement au développement Afrique ↔ Europe, Asie et Amériques.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="svc"><div class="num">03</div><h3 data-fr="Support administratif & fiscal" data-en="Administrative & tax support">Support administratif & fiscal</h3><p data-fr="Aide aux démarches d'implantation et de conformité." data-en="Assistance with setup and compliance procedures.">Aide aux démarches d'implantation et de conformité.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="svc"><div class="num">04</div><h3 data-fr="Foncier agricole" data-en="Agricultural land">Foncier agricole</h3><p data-fr="Acquisition et valorisation de terres agricoles." data-en="Acquisition and development of agricultural land.">Acquisition et valorisation de terres agricoles.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="svc"><div class="num">05</div><h3 data-fr="Logistique" data-en="Logistics">Logistique</h3><p data-fr="Gestion des flux import-export de bout en bout." data-en="End-to-end import-export flow management.">Gestion des flux import-export de bout en bout.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="svc"><div class="num">06</div><h3 data-fr="Ressources humaines" data-en="Human resources">Ressources humaines</h3><p data-fr="Recrutement et placement de talents qualifiés." data-en="Recruitment and placement of qualified talent.">Recrutement et placement de talents qualifiés.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="svc"><div class="num">07</div><h3 data-fr="Promotion des investissements" data-en="Investment promotion">Promotion des investissements</h3><p data-fr="Attraction de capitaux vers les marchés africains." data-en="Attracting capital toward African markets.">Attraction de capitaux vers les marchés africains.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="svc"><div class="num">08</div><h3 data-fr="Import / Export général" data-en="General import / export">Import / Export général</h3><p data-fr="Négoce de marchandises toutes catégories." data-en="Trading of goods across all categories.">Négoce de marchandises toutes catégories.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="svc"><img class="svc-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=280&fit=crop&q=80" alt="Représentation commerciale" loading="lazy"><div class="num">01</div><h3 data-fr="Représentation commerciale" data-en="Commercial representation">Représentation commerciale</h3><p data-fr="Mise en relation des entreprises africaines avec des partenaires internationaux." data-en="Connecting African companies with international partners.">Mise en relation des entreprises africaines avec des partenaires internationaux.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="svc"><img class="svc-img" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=280&fit=crop&q=80" alt="Conseil stratégique" loading="lazy"><div class="num">02</div><h3 data-fr="Conseil stratégique" data-en="Strategic consulting">Conseil stratégique</h3><p data-fr="Accompagnement au développement Afrique ↔ Europe, Asie et Amériques." data-en="Development support across Africa ↔ Europe, Asia and the Americas.">Accompagnement au développement Afrique ↔ Europe, Asie et Amériques.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="svc"><img class="svc-img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=280&fit=crop&q=80" alt="Support administratif" loading="lazy"><div class="num">03</div><h3 data-fr="Support administratif & fiscal" data-en="Administrative & tax support">Support administratif & fiscal</h3><p data-fr="Aide aux démarches d'implantation et de conformité." data-en="Assistance with setup and compliance procedures.">Aide aux démarches d'implantation et de conformité.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="svc"><img class="svc-img" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=280&fit=crop&q=80" alt="Foncier agricole" loading="lazy"><div class="num">04</div><h3 data-fr="Foncier agricole" data-en="Agricultural land">Foncier agricole</h3><p data-fr="Acquisition et valorisation de terres agricoles." data-en="Acquisition and development of agricultural land.">Acquisition et valorisation de terres agricoles.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="svc"><img class="svc-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=280&fit=crop&q=80" alt="Logistique" loading="lazy"><div class="num">05</div><h3 data-fr="Logistique" data-en="Logistics">Logistique</h3><p data-fr="Gestion des flux import-export de bout en bout." data-en="End-to-end import-export flow management.">Gestion des flux import-export de bout en bout.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="svc"><img class="svc-img" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=280&fit=crop&q=80" alt="Ressources humaines" loading="lazy"><div class="num">06</div><h3 data-fr="Ressources humaines" data-en="Human resources">Ressources humaines</h3><p data-fr="Recrutement et placement de talents qualifiés." data-en="Recruitment and placement of qualified talent.">Recrutement et placement de talents qualifiés.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="svc"><img class="svc-img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=280&fit=crop&q=80" alt="Promotion des investissements" loading="lazy"><div class="num">07</div><h3 data-fr="Promotion des investissements" data-en="Investment promotion">Promotion des investissements</h3><p data-fr="Attraction de capitaux vers les marchés africains." data-en="Attracting capital toward African markets.">Attraction de capitaux vers les marchés africains.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="svc"><img class="svc-img" src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&h=280&fit=crop&q=80" alt="Import Export" loading="lazy"><div class="num">08</div><h3 data-fr="Import / Export général" data-en="General import / export">Import / Export général</h3><p data-fr="Négoce de marchandises toutes catégories." data-en="Trading of goods across all categories.">Négoce de marchandises toutes catégories.</p><a href="#contact" class="svc-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
   </div>
 </div></section>
 
@@ -308,28 +322,31 @@
   </div>
   <div class="contact-grid">
     <div class="reveal">
-      <div class="c-item"><div class="ic">✉</div><div><b data-fr="Email" data-en="Email">Email</b><span>contact@africavit.com<br>vision@africavit.com</span></div></div>
-      <div class="c-item"><div class="ic">🌐</div><div><b data-fr="Site web" data-en="Website">Site web</b><span>www.africavit.com</span></div></div>
+      <div class="c-item"><div class="ic">📞</div><div><b data-fr="Téléphone" data-en="Phone">Téléphone</b><span>+225 27 22 35 33 27</span></div></div>
+      <div class="c-item"><div class="ic">📱</div><div><b data-fr="Cel / WhatsApp" data-en="Cell / WhatsApp">Cel / WhatsApp</b><span><a href="https://wa.me/2250574199760" style="color:inherit">+225 05 74 19 97 60</a></span></div></div>
+      <div class="c-item"><div class="ic">✉</div><div><b data-fr="Email" data-en="Email">Email</b><span>contact@africavit.com</span></div></div>
       <div class="c-item"><div class="ic">📍</div><div><b data-fr="Siège" data-en="Headquarters">Siège</b><span>Cocody-Angré, Lot 4527 — Abidjan, Côte d'Ivoire</span></div></div>
       <div class="c-item"><div class="ic">🕐</div><div><b data-fr="Horaires" data-en="Hours">Horaires</b><span data-fr="Lun – Ven · 08h – 18h" data-en="Mon – Fri · 8am – 6pm">Lun – Ven · 08h – 18h</span></div></div>
     </div>
-    <div class="form reveal">
-      <input type="text" placeholder="Nom complet" data-fr-ph="Nom complet" data-en-ph="Full name">
-      <input type="email" placeholder="Email" data-fr-ph="Email" data-en-ph="Email">
-      <input type="text" placeholder="Sujet" data-fr-ph="Sujet" data-en-ph="Subject">
-      <textarea rows="4" placeholder="Votre message" data-fr-ph="Votre message" data-en-ph="Your message"></textarea>
-      <button type="button" onclick="sendMsg()" data-fr="Envoyer le message" data-en="Send message">Envoyer le message</button>
-    </div>
+    <form class="form reveal" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+      <input type="hidden" name="bot-field">
+      <input type="text" name="nom" placeholder="Nom complet" data-fr-ph="Nom complet" data-en-ph="Full name" required>
+      <input type="email" name="email" placeholder="Email" data-fr-ph="Email" data-en-ph="Email" required>
+      <input type="text" name="sujet" placeholder="Sujet" data-fr-ph="Sujet" data-en-ph="Subject">
+      <textarea name="message" rows="4" placeholder="Votre message" data-fr-ph="Votre message" data-en-ph="Your message" required></textarea>
+      <button type="submit" data-fr="Envoyer le message" data-en="Send message">Envoyer le message</button>
+    </form>
   </div>
 </div></section>
 
 <!-- Footer -->
 <footer><div class="wrap">
-  <a class="brand" href="#"><span class="logo-mark">A</span><b>AFRICA<span>ViT</span></b></a>
+  <a class="brand" href="#top"><span class="logo-mark">A</span><b>AFRICA<span>ViT</span></b></a>
   <div class="fsocial">
-    <a href="#" aria-label="LinkedIn">in</a>
-    <a href="#" aria-label="Facebook">f</a>
-    <a href="#" aria-label="WhatsApp">✆</a>
+    <a href="https://www.linkedin.com/company/121494047/" target="_blank" aria-label="LinkedIn">in</a>
+    <a href="https://www.facebook.com/share/p/1BN8GUWnqW/" target="_blank" aria-label="Facebook">f</a>
+    <a href="https://wa.me/2250574199760" target="_blank" aria-label="WhatsApp">✆</a>
   </div>
 </div>
 <div class="wrap fbottom" data-fr="© 2026 AFRICAViT SARL — Tous droits réservés · Abidjan, Côte d'Ivoire" data-en="© 2026 AFRICAViT SARL — All rights reserved · Abidjan, Côte d'Ivoire">© 2026 AFRICAViT SARL — Tous droits réservés · Abidjan, Côte d'Ivoire</div>
