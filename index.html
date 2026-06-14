@@ -1,961 +1,307 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AFRICAViT SARL — Votre passerelle vers l'Afrique</title>
-  <style>
-    :root {
-      --navy: #0d1b3e;
-      --navy-light: #162447;
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
-      --white: #ffffff;
-      --gray-light: #f5f6fa;
-      --gray: #8892a4;
-      --text: #1a2340;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      color: var(--text);
-      background: var(--white);
-    }
-
-    /* ── NAVBAR ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--navy);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%;
-      height: 70px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-    }
-
-    .logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none;
-    }
-
-    .logo-mark {
-      width: 40px; height: 40px;
-      background: var(--gold);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 18px; color: var(--navy);
-      letter-spacing: -1px;
-    }
-
-    .logo-text {
-      font-size: 22px; font-weight: 800;
-      color: var(--white);
-      letter-spacing: 1px;
-    }
-
-    .logo-text span { color: var(--gold); }
-
-    nav ul {
-      list-style: none;
-      display: flex; gap: 30px; align-items: center;
-    }
-
-    nav ul a {
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      font-size: 14px; font-weight: 500;
-      letter-spacing: 0.5px;
-      transition: color 0.2s;
-    }
-
-    nav ul a:hover { color: var(--gold); }
-
-    .lang-switcher {
-      display: flex; gap: 4px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 20px; padding: 3px;
-    }
-
-    .lang-btn {
-      border: none; cursor: pointer;
-      background: transparent;
-      color: rgba(255,255,255,0.6);
-      font-size: 12px; font-weight: 600;
-      padding: 4px 10px; border-radius: 16px;
-      transition: all 0.2s;
-    }
-
-    .lang-btn.active {
-      background: var(--gold);
-      color: var(--navy);
-    }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #1a3560 100%);
-      display: flex; align-items: center;
-      padding: 0 5%;
-      position: relative; overflow: hidden;
-    }
-
-    #hero::before {
-      content: '';
-      position: absolute; top: 0; right: 0; bottom: 0; left: 0;
-      background:
-        radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
-    }
-
-    /* Africa SVG outline in background */
-    #hero::after {
-      content: '';
-      position: absolute; right: 5%; top: 50%;
-      transform: translateY(-50%);
-      width: 420px; height: 480px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 230' fill='none'%3E%3Cpath d='M100 10 C120 10 145 18 158 35 C175 55 175 80 168 100 C162 118 172 130 170 150 C166 175 150 200 130 215 C115 225 100 228 88 220 C72 210 60 192 50 172 C38 148 30 125 28 100 C25 72 32 50 48 35 C62 22 80 10 100 10Z' stroke='%23c9a84c' stroke-width='1.5' stroke-dasharray='4 3' opacity='0.25'/%3E%3C/svg%3E") center/contain no-repeat;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative; z-index: 1;
-      max-width: 680px;
-    }
-
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.35);
-      border-radius: 30px; padding: 6px 18px;
-      color: var(--gold); font-size: 13px; font-weight: 600;
-      letter-spacing: 0.5px; margin-bottom: 28px;
-    }
-
-    .hero-badge::before { content: '◆'; font-size: 8px; }
-
-    .hero-title {
-      font-size: clamp(36px, 5vw, 62px);
-      font-weight: 900; line-height: 1.1;
-      color: var(--white);
-      margin-bottom: 10px;
-    }
-
-    .hero-title .accent { color: var(--gold); }
-
-    .hero-subtitle {
-      font-size: clamp(18px, 2.5vw, 26px);
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 24px; font-weight: 300;
-    }
-
-    .hero-desc {
-      font-size: 16px; line-height: 1.75;
-      color: rgba(255,255,255,0.75);
-      max-width: 560px; margin-bottom: 40px;
-    }
-
-    .hero-ctas {
-      display: flex; gap: 16px; flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: var(--navy);
-      border: none; border-radius: 8px;
-      padding: 14px 32px; font-size: 15px; font-weight: 700;
-      cursor: pointer; text-decoration: none;
-      transition: all 0.2s;
-      letter-spacing: 0.3px;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(201,168,76,0.4);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      border: 2px solid rgba(255,255,255,0.4);
-      border-radius: 8px;
-      padding: 14px 32px; font-size: 15px; font-weight: 600;
-      cursor: pointer; text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
-
-    .hero-stats {
-      display: flex; gap: 40px; margin-top: 60px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .stat-item { text-align: left; }
-
-    .stat-num {
-      font-size: 32px; font-weight: 900;
-      color: var(--gold);
-    }
-
-    .stat-label {
-      font-size: 12px; color: rgba(255,255,255,0.55);
-      text-transform: uppercase; letter-spacing: 1px; margin-top: 2px;
-    }
-
-    /* ── SECTIONS ── */
-    section { padding: 90px 5%; }
-
-    .section-tag {
-      font-size: 12px; font-weight: 700;
-      color: var(--gold);
-      text-transform: uppercase; letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(26px, 3vw, 40px);
-      font-weight: 800; color: var(--navy);
-      margin-bottom: 16px; line-height: 1.2;
-    }
-
-    .section-desc {
-      font-size: 16px; color: var(--gray);
-      max-width: 600px; line-height: 1.75;
-      margin-bottom: 50px;
-    }
-
-    /* ── SERVICES ── */
-    #services { background: var(--gray-light); }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .service-card {
-      background: var(--white);
-      border-radius: 14px;
-      padding: 32px 28px;
-      border: 1px solid rgba(13,27,62,0.06);
-      transition: all 0.3s;
-      position: relative; overflow: hidden;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.3s;
-    }
-
-    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(13,27,62,0.1); }
-    .service-card:hover::before { transform: scaleX(1); }
-
-    .service-num {
-      font-size: 11px; font-weight: 800;
-      color: var(--gold); letter-spacing: 1.5px;
-      text-transform: uppercase; margin-bottom: 14px;
-    }
-
-    .service-icon {
-      font-size: 32px; margin-bottom: 14px; display: block;
-    }
-
-    .service-title {
-      font-size: 17px; font-weight: 700;
-      color: var(--navy); margin-bottom: 10px;
-    }
-
-    .service-desc {
-      font-size: 14px; color: var(--gray); line-height: 1.65;
-    }
-
-    /* ── SECTORS ── */
-    #sectors { background: var(--white); }
-
-    .sectors-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-    }
-
-    .sector-card {
-      background: var(--navy);
-      border-radius: 14px; padding: 32px 20px;
-      text-align: center;
-      transition: all 0.3s; cursor: default;
-    }
-
-    .sector-card:hover {
-      background: var(--navy-light);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(13,27,62,0.25);
-    }
-
-    .sector-icon { font-size: 36px; margin-bottom: 14px; display: block; }
-
-    .sector-name {
-      font-size: 15px; font-weight: 700;
-      color: var(--white); margin-bottom: 6px;
-    }
-
-    .sector-sub {
-      font-size: 12px; color: rgba(255,255,255,0.5);
-      line-height: 1.5;
-    }
-
-    /* ── ABOUT ── */
-    #about {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-      color: var(--white);
-    }
-
-    #about .section-title { color: var(--white); }
-    #about .section-tag { color: var(--gold); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
-    }
-
-    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
-
-    .about-text p {
-      font-size: 16px; line-height: 1.8;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 20px;
-    }
-
-    .founder-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(201,168,76,0.25);
-      border-radius: 16px; padding: 36px;
-    }
-
-    .founder-quote {
-      font-size: 18px; font-style: italic;
-      color: rgba(255,255,255,0.9); line-height: 1.7;
-      margin-bottom: 24px;
-      position: relative; padding-left: 20px;
-    }
-
-    .founder-quote::before {
-      content: '"';
-      position: absolute; left: 0; top: -8px;
-      font-size: 60px; color: var(--gold);
-      opacity: 0.4; line-height: 1; font-style: normal;
-    }
-
-    .founder-info {
-      display: flex; align-items: center; gap: 14px;
-    }
-
-    .founder-avatar {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; font-weight: 900; color: var(--navy);
-    }
-
-    .founder-name {
-      font-size: 16px; font-weight: 700; color: var(--gold);
-    }
-
-    .founder-role {
-      font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px;
-    }
-
-    .values-list {
-      list-style: none; margin-top: 28px;
-      display: flex; flex-direction: column; gap: 12px;
-    }
-
-    .values-list li {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 15px; color: rgba(255,255,255,0.8);
-    }
-
-    .values-list li::before {
-      content: '◆';
-      color: var(--gold); font-size: 10px; flex-shrink: 0;
-    }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--gray-light); }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 60px; align-items: start;
-    }
-
-    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
-
-    .contact-info h3 {
-      font-size: 20px; font-weight: 700;
-      color: var(--navy); margin-bottom: 16px;
-    }
-
-    .contact-info p {
-      font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 28px;
-    }
-
-    .contact-item {
-      display: flex; align-items: flex-start; gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .contact-icon {
-      width: 38px; height: 38px; flex-shrink: 0;
-      background: var(--navy);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-    }
-
-    .contact-detail strong {
-      display: block; font-size: 13px;
-      color: var(--navy); font-weight: 700;
-    }
-
-    .contact-detail span {
-      font-size: 14px; color: var(--gray);
-    }
-
-    .contact-form {
-      background: var(--white);
-      border-radius: 16px; padding: 40px;
-      box-shadow: 0 4px 30px rgba(13,27,62,0.07);
-    }
-
-    .form-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    }
-
-    .form-group { margin-bottom: 20px; }
-
-    .form-group label {
-      display: block; font-size: 13px;
-      font-weight: 600; color: var(--navy);
-      margin-bottom: 6px; letter-spacing: 0.3px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      border: 1.5px solid #e0e4ef;
-      border-radius: 8px;
-      padding: 12px 14px;
-      font-size: 14px; color: var(--text);
-      background: var(--white);
-      outline: none; transition: border 0.2s;
-      font-family: inherit;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--navy);
-    }
-
-    .form-group textarea { height: 110px; resize: vertical; }
-
-    .form-submit {
-      width: 100%;
-      background: var(--navy);
-      color: var(--white);
-      border: none; border-radius: 8px;
-      padding: 15px; font-size: 15px; font-weight: 700;
-      cursor: pointer; transition: all 0.2s;
-      letter-spacing: 0.5px;
-    }
-
-    .form-submit:hover {
-      background: var(--gold);
-      color: var(--navy);
-      transform: translateY(-1px);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.5);
-      padding: 40px 5%;
-      display: flex; align-items: center;
-      justify-content: space-between; flex-wrap: wrap; gap: 16px;
-    }
-
-    footer a { color: var(--gold); text-decoration: none; }
-
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
-
-    /* ── UTILITY ── */
-    .hidden { display: none !important; }
-
-    @media (max-width: 600px) {
-      nav ul { display: none; }
-      .form-row { grid-template-columns: 1fr; }
-      .hero-stats { flex-wrap: wrap; gap: 24px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AFRICAViT SARL — Votre passerelle vers l'Afrique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1F3A;
+    --navy-deep:#06152a;
+    --gold:#C9A24B;
+    --gold-bright:#E4C170;
+    --cream:#F7F4EC;
+    --ink:#1a2438;
+    --muted:#5b6678;
+    --line:rgba(201,162,75,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Outfit',sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;overflow-x:hidden}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;line-height:1.1}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  /* Topbar */
+  .topbar{background:var(--navy-deep);color:rgba(255,255,255,.78);font-size:13px;padding:8px 0}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar a:hover{color:var(--gold-bright)}
+  .topbar .t-right{display:flex;gap:18px;flex-wrap:wrap}
+
+  /* Nav */
+  header{position:sticky;top:0;z-index:50;background:rgba(11,31,58,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff}
+  .logo-mark{width:42px;height:42px;border-radius:9px;background:linear-gradient(135deg,#10663f,#0a4a2c);display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:700;font-size:24px;color:var(--gold-bright);border:1px solid var(--gold)}
+  .brand b{font-family:'Fraunces',serif;font-size:21px;letter-spacing:.5px}
+  .brand b span{color:var(--gold-bright)}
+  .navlinks{display:flex;gap:26px;align-items:center}
+  .navlinks a{color:rgba(255,255,255,.82);font-size:15px;font-weight:400;transition:color .2s}
+  .navlinks a:hover{color:var(--gold-bright)}
+  .lang{display:flex;gap:6px;align-items:center;margin-left:8px}
+  .lang button{background:none;border:1px solid var(--line);color:rgba(255,255,255,.7);padding:3px 9px;border-radius:6px;cursor:pointer;font-family:'Outfit';font-size:13px}
+  .lang button.active{background:var(--gold);color:var(--navy-deep);border-color:var(--gold);font-weight:600}
+  .cta-nav{background:var(--gold);color:var(--navy-deep)!important;padding:9px 18px;border-radius:8px;font-weight:600!important;font-size:14px!important}
+  .cta-nav:hover{background:var(--gold-bright)}
+  .burger{display:none;background:none;border:none;color:#fff;font-size:26px;cursor:pointer}
+
+  /* Hero */
+  .hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;position:relative;overflow:hidden;padding:96px 0 104px}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 80% 20%,rgba(201,162,75,.13),transparent 45%);pointer-events:none}
+  .hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;position:relative}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--gold-bright);font-size:13px;letter-spacing:2.5px;text-transform:uppercase;font-weight:500;margin-bottom:22px}
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+  .hero h1{font-size:clamp(38px,5vw,62px);font-weight:700;margin-bottom:22px}
+  .hero h1 em{font-style:normal;color:var(--gold-bright)}
+  .hero p.lead{font-size:18px;color:rgba(255,255,255,.78);max-width:520px;margin-bottom:34px;font-weight:300}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-gold{background:var(--gold);color:var(--navy-deep);padding:14px 28px;border-radius:9px;font-weight:600;transition:transform .2s,background .2s}
+  .btn-gold:hover{background:var(--gold-bright);transform:translateY(-2px)}
+  .btn-ghost{border:1px solid var(--line);color:#fff;padding:14px 28px;border-radius:9px;font-weight:500;transition:border-color .2s}
+  .btn-ghost:hover{border-color:var(--gold)}
+  .hero-card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:30px;backdrop-filter:blur(6px)}
+  .hero-card h3{color:var(--gold-bright);font-size:18px;margin-bottom:18px}
+  .hero-card ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .hero-card li{display:flex;gap:11px;font-size:14.5px;color:rgba(255,255,255,.85)}
+  .hero-card li::before{content:"◆";color:var(--gold);font-size:11px;margin-top:4px}
+
+  /* Ticker */
+  .ticker{background:var(--navy-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0}
+  .ticker .wrap{display:flex;justify-content:space-around;flex-wrap:wrap;gap:24px;text-align:center}
+  .stat b{font-family:'Fraunces',serif;font-size:34px;color:var(--gold-bright);display:block}
+  .stat span{color:rgba(255,255,255,.6);font-size:13px;letter-spacing:1px;text-transform:uppercase}
+
+  /* Sections */
+  section{padding:90px 0}
+  .sec-head{max-width:680px;margin-bottom:54px}
+  .sec-head .eyebrow{color:var(--gold)}
+  .sec-head .eyebrow::before{background:var(--gold)}
+  .sec-head h2{font-size:clamp(30px,4vw,44px);color:var(--navy);margin-bottom:14px}
+  .sec-head p{color:var(--muted);font-size:17px}
+
+  /* Services grid */
+  .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .svc{background:var(--cream);padding:34px 30px;transition:background .3s}
+  .svc:hover{background:#fff}
+  .svc .num{font-family:'Fraunces',serif;color:var(--gold);font-size:15px;letter-spacing:1px}
+  .svc h3{font-size:20px;color:var(--navy);margin:14px 0 10px}
+  .svc p{color:var(--muted);font-size:14.5px}
+
+  /* Sectors band */
+  .sectors{background:var(--navy);color:#fff}
+  .sectors .sec-head h2{color:#fff}
+  .sectors .sec-head .eyebrow,.sectors .sec-head .eyebrow::before{color:var(--gold-bright);background:var(--gold)}
+  .sec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px}
+  .sector{border:1px solid var(--line);border-radius:13px;padding:26px 22px;transition:transform .25s,border-color .25s}
+  .sector:hover{transform:translateY(-4px);border-color:var(--gold)}
+  .sector .ic{font-size:26px;margin-bottom:12px}
+  .sector h4{font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--gold-bright);margin-bottom:6px}
+  .sector p{font-size:13px;color:rgba(255,255,255,.6)}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .about-grid p{color:var(--muted);margin-bottom:16px;font-size:16px}
+  .founder{background:var(--navy);border-radius:18px;padding:40px;color:#fff;position:relative}
+  .founder::after{content:"";position:absolute;top:18px;right:18px;width:60px;height:60px;border:1px solid var(--gold);border-radius:50%;opacity:.4}
+  .founder .role{color:var(--gold-bright);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+  .founder h3{font-size:24px;margin-bottom:14px}
+  .founder blockquote{font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:rgba(255,255,255,.82);line-height:1.5;border-left:2px solid var(--gold);padding-left:18px}
+
+  /* Contact */
+  .contact{background:var(--navy-deep);color:#fff}
+  .contact .sec-head h2{color:#fff}
+  .contact .sec-head .eyebrow,.contact .sec-head .eyebrow::before{color:var(--gold-bright);background:var(--gold)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px}
+  .c-item{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
+  .c-item .ic{color:var(--gold-bright);font-size:18px;margin-top:2px}
+  .c-item b{display:block;font-size:13px;color:var(--gold-bright);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+  .c-item span{color:rgba(255,255,255,.78);font-size:15px}
+  .form{display:flex;flex-direction:column;gap:14px}
+  .form input,.form textarea{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:9px;padding:13px 15px;color:#fff;font-family:'Outfit';font-size:15px}
+  .form input::placeholder,.form textarea::placeholder{color:rgba(255,255,255,.4)}
+  .form input:focus,.form textarea:focus{outline:none;border-color:var(--gold)}
+  .form button{background:var(--gold);color:var(--navy-deep);border:none;padding:14px;border-radius:9px;font-family:'Outfit';font-weight:600;font-size:15px;cursor:pointer;transition:background .2s}
+  .form button:hover{background:var(--gold-bright)}
+
+  /* Footer */
+  footer{background:#04101f;color:rgba(255,255,255,.6);padding:44px 0 28px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  footer .brand b{color:#fff}
+  .fsocial{display:flex;gap:14px}
+  .fsocial a{width:36px;height:36px;border:1px solid var(--line);border-radius:8px;display:grid;place-items:center;color:var(--gold-bright);transition:background .2s}
+  .fsocial a:hover{background:var(--gold);color:var(--navy-deep)}
+  .fbottom{text-align:center;margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:13px}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:860px){
+    .navlinks{display:none}
+    .burger{display:block}
+    .hero .grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+    .founder{order:-1}
+  }
+</style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
-<nav>
-  <a class="logo" href="#hero">
-    <div class="logo-mark">AV</div>
-    <span class="logo-text">AFRICA<span>ViT</span></span>
-  </a>
-
-  <ul>
-    <li><a href="#services" class="fr">Services</a><a href="#services" class="en hidden">Services</a></li>
-    <li><a href="#sectors" class="fr">Secteurs</a><a href="#sectors" class="en hidden">Sectors</a></li>
-    <li><a href="#about" class="fr">À propos</a><a href="#about" class="en hidden">About</a></li>
-    <li><a href="#contact" class="fr">Contact</a><a href="#contact" class="en hidden">Contact</a></li>
-  </ul>
-
-  <div class="lang-switcher">
-    <button class="lang-btn active" onclick="setLang('fr')">FR</button>
-    <button class="lang-btn" onclick="setLang('en')">EN</button>
+<!-- Topbar -->
+<div class="topbar"><div class="wrap">
+  <span data-fr="🌍 Afrique ↔ Europe · Asie · Amériques" data-en="🌍 Africa ↔ Europe · Asia · Americas">🌍 Afrique ↔ Europe · Asie · Amériques</span>
+  <div class="t-right">
+    <a href="mailto:contact@africavit.com">✉ contact@africavit.com</a>
+    <a href="#">📍 Cocody-Angré, Lot 4527 · Abidjan</a>
   </div>
-</nav>
+</div></div>
 
-<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
-<section id="hero">
-  <div class="hero-content">
-    <div class="hero-badge fr">AFRICAViT SARL — Votre passerelle vers l'Afrique</div>
-    <div class="hero-badge en hidden">The Africa — World Gateway</div>
-
-    <h1 class="hero-title fr">
-      Votre partenaire<br />de confiance pour<br /><span class="accent">l'Afrique</span>
-    </h1>
-    <h1 class="hero-title en hidden">
-      Your trusted partner<br />for doing business<br /><span class="accent">in Africa</span>
-    </h1>
-
-    <p class="hero-subtitle fr">Conseil · Investissement · Développement</p>
-    <p class="hero-subtitle en hidden">Advisory · Investment · Development</p>
-
-    <p class="hero-desc fr">
-      AFRICAViT accompagne les entreprises, institutions et investisseurs dans leur stratégie africaine.
-      De l'analyse de marché à l'implantation opérationnelle, nous sommes le pont entre vos ambitions
-      et les opportunités du continent.
-    </p>
-    <p class="hero-desc en hidden">
-      AFRICAViT supports businesses, institutions and investors in their African strategy.
-      From market analysis to operational setup, we are the bridge between your ambitions
-      and the continent's opportunities.
-    </p>
-
-    <div class="hero-ctas">
-      <a href="#contact" class="btn-primary fr">Nous contacter</a>
-      <a href="#contact" class="btn-primary en hidden">Get in touch</a>
-      <a href="#services" class="btn-outline fr">Nos services</a>
-      <a href="#services" class="btn-outline en hidden">Our services</a>
+<!-- Header -->
+<header><div class="wrap"><nav>
+  <a class="brand" href="#"><span class="logo-mark">A</span><b>AFRICA<span>ViT</span></b></a>
+  <div class="navlinks">
+    <a href="#services" data-fr="Services" data-en="Services">Services</a>
+    <a href="#secteurs" data-fr="Secteurs" data-en="Sectors">Secteurs</a>
+    <a href="#apropos" data-fr="À propos" data-en="About">À propos</a>
+    <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+    <div class="lang">
+      <button onclick="setLang('fr')" id="b-fr" class="active">FR</button>
+      <button onclick="setLang('en')" id="b-en">EN</button>
     </div>
+    <a href="#contact" class="cta-nav" data-fr="Démarrer un projet" data-en="Start a project">Démarrer un projet</a>
+  </div>
+  <button class="burger" onclick="document.querySelector('.navlinks').style.display='flex'">☰</button>
+</nav></div></header>
 
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">54</div>
-        <div class="stat-label fr">Pays couverts</div>
-        <div class="stat-label en hidden">Countries covered</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">8</div>
-        <div class="stat-label fr">Domaines d'expertise</div>
-        <div class="stat-label en hidden">Areas of expertise</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">10+</div>
-        <div class="stat-label fr">Années d'expérience</div>
-        <div class="stat-label en hidden">Years of experience</div>
-      </div>
+<!-- Hero -->
+<section class="hero"><div class="wrap"><div class="grid">
+  <div class="reveal">
+    <span class="eyebrow" data-fr="Commerce international & développement d'affaires" data-en="International trade & business development">Commerce international & développement d'affaires</span>
+    <h1 data-fr="Votre passerelle vers <em>l'Afrique</em> et au-delà" data-en="Your gateway to <em>Africa</em> and beyond">Votre passerelle vers <em>l'Afrique</em> et au-delà</h1>
+    <p class="lead" data-fr="AFRICAViT connecte les entreprises africaines aux marchés mondiaux : représentation commerciale, conseil stratégique, import-export et facilitation d'investissements." data-en="AFRICAViT connects African businesses to global markets: commercial representation, strategic consulting, import-export and investment facilitation.">AFRICAViT connecte les entreprises africaines aux marchés mondiaux : représentation commerciale, conseil stratégique, import-export et facilitation d'investissements.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold" data-fr="Travailler avec nous" data-en="Work with us">Travailler avec nous</a>
+      <a href="#services" class="btn-ghost" data-fr="Nos services" data-en="Our services">Nos services</a>
     </div>
   </div>
-</section>
-
-<!-- ═══════════════════════════════ SERVICES ═══════════════════════════════ -->
-<section id="services">
-  <div class="section-tag fr">Nos services</div>
-  <div class="section-tag en hidden">Our services</div>
-
-  <h2 class="section-title fr">8 domaines d'expertise<br />à votre service</h2>
-  <h2 class="section-title en hidden">8 areas of expertise<br />at your service</h2>
-
-  <p class="section-desc fr">
-    De la stratégie à l'exécution, AFRICAViT vous offre un accompagnement 360°
-    pour réussir vos projets sur le continent africain.
-  </p>
-  <p class="section-desc en hidden">
-    From strategy to execution, AFRICAViT offers 360° support
-    to ensure the success of your projects across the African continent.
-  </p>
-
-  <div class="services-grid">
-
-    <!-- S1 -->
-    <div class="service-card">
-      <div class="service-num">01</div>
-      <span class="service-icon">🌍</span>
-      <div class="service-title fr">Intelligence de marché</div>
-      <div class="service-title en hidden">Market Intelligence</div>
-      <p class="service-desc fr">Études de marché, veille stratégique, analyse de la concurrence et cartographie des opportunités sur mesure pour chaque pays ciblé.</p>
-      <p class="service-desc en hidden">Market research, strategic monitoring, competitive analysis and opportunity mapping tailored to each targeted country.</p>
-    </div>
-
-    <!-- S2 -->
-    <div class="service-card">
-      <div class="service-num">02</div>
-      <span class="service-icon">📊</span>
-      <div class="service-title fr">Conseil en investissement</div>
-      <div class="service-title en hidden">Investment Advisory</div>
-      <p class="service-desc fr">Identification d'opportunités, due diligence, structuration financière et mise en relation avec les partenaires locaux et internationaux.</p>
-      <p class="service-desc en hidden">Opportunity identification, due diligence, financial structuring and networking with local and international partners.</p>
-    </div>
-
-    <!-- S3 -->
-    <div class="service-card">
-      <div class="service-num">03</div>
-      <span class="service-icon">🏛️</span>
-      <div class="service-title fr">Relations institutionnelles</div>
-      <div class="service-title en hidden">Institutional Relations</div>
-      <p class="service-desc fr">Interface avec les gouvernements, les organisations régionales (UA, CEDEAO, CEMAC) et les institutions de développement.</p>
-      <p class="service-desc en hidden">Interface with governments, regional organisations (AU, ECOWAS, CEMAC) and development institutions.</p>
-    </div>
-
-    <!-- S4 -->
-    <div class="service-card">
-      <div class="service-num">04</div>
-      <span class="service-icon">⚖️</span>
-      <div class="service-title fr">Conseil juridique & conformité</div>
-      <div class="service-title en hidden">Legal & Compliance</div>
-      <p class="service-desc fr">Accompagnement dans les cadres réglementaires OHADA, SYSCOHADA, droit des affaires local, compliance fiscale et montage contractuel.</p>
-      <p class="service-desc en hidden">Support within OHADA and SYSCOHADA regulatory frameworks, local business law, tax compliance and contract structuring.</p>
-    </div>
-
-    <!-- S5 -->
-    <div class="service-card">
-      <div class="service-num">05</div>
-      <span class="service-icon">🚀</span>
-      <div class="service-title fr">Implantation & développement</div>
-      <div class="service-title en hidden">Business Setup & Expansion</div>
-      <p class="service-desc fr">Création d'entités locales, recrutement de direction, déploiement opérationnel et accompagnement post-installation.</p>
-      <p class="service-desc en hidden">Setting up local entities, executive recruitment, operational deployment and post-setup support.</p>
-    </div>
-
-    <!-- S6 -->
-    <div class="service-card">
-      <div class="service-num">06</div>
-      <span class="service-icon">🤝</span>
-      <div class="service-title fr">Partenariats stratégiques</div>
-      <div class="service-title en hidden">Strategic Partnerships</div>
-      <p class="service-desc fr">Mise en relation B2B, joint-ventures, accords de distribution et développement de réseaux commerciaux locaux et régionaux.</p>
-      <p class="service-desc en hidden">B2B networking, joint ventures, distribution agreements and development of local and regional commercial networks.</p>
-    </div>
-
-    <!-- S7 -->
-    <div class="service-card">
-      <div class="service-num">07</div>
-      <span class="service-icon">💡</span>
-      <div class="service-title fr">Innovation & transformation digitale</div>
-      <div class="service-title en hidden">Innovation & Digital Transformation</div>
-      <p class="service-desc fr">Déploiement de solutions technologiques adaptées aux marchés africains : fintech, agritech, healthtech, e-commerce et ERP.</p>
-      <p class="service-desc en hidden">Deployment of technology solutions tailored to African markets: fintech, agritech, healthtech, e-commerce and ERP.</p>
-    </div>
-
-    <!-- S8 -->
-    <div class="service-card">
-      <div class="service-num">08</div>
-      <span class="service-icon">📚</span>
-      <div class="service-title fr">Formation & renforcement de capacités</div>
-      <div class="service-title en hidden">Training & Capacity Building</div>
-      <p class="service-desc fr">Programmes de formation professionnelle, coaching de dirigeants, transfert de compétences et mentorat des équipes locales.</p>
-      <p class="service-desc en hidden">Professional training programmes, executive coaching, skills transfer and mentoring of local teams.</p>
-    </div>
-
+  <div class="hero-card reveal">
+    <h3 data-fr="Ce que nous faisons" data-en="What we do">Ce que nous faisons</h3>
+    <ul>
+      <li data-fr="Mise en relation entreprises ↔ partenaires internationaux" data-en="Connecting businesses ↔ international partners">Mise en relation entreprises ↔ partenaires internationaux</li>
+      <li data-fr="Accompagnement à l'implantation et au développement" data-en="Support for setup and growth">Accompagnement à l'implantation et au développement</li>
+      <li data-fr="Import-export et négoce de marchandises" data-en="Import-export and goods trading">Import-export et négoce de marchandises</li>
+      <li data-fr="Foncier agricole et promotion des investissements" data-en="Agricultural land and investment promotion">Foncier agricole et promotion des investissements</li>
+    </ul>
   </div>
-</section>
+</div></div></section>
 
-<!-- ═══════════════════════════════ SECTORS ═══════════════════════════════ -->
-<section id="sectors">
-  <div class="section-tag fr">Secteurs d'intervention</div>
-  <div class="section-tag en hidden">Sectors of intervention</div>
+<!-- Ticker -->
+<div class="ticker"><div class="wrap">
+  <div class="stat"><b>3</b><span data-fr="Continents couverts" data-en="Continents covered">Continents couverts</span></div>
+  <div class="stat"><b>8</b><span data-fr="Domaines d'activité" data-en="Business areas">Domaines d'activité</span></div>
+  <div class="stat"><b>360°</b><span data-fr="Accompagnement" data-en="Full support">Accompagnement</span></div>
+  <div class="stat"><b>CI</b><span data-fr="Basée à Abidjan" data-en="Based in Abidjan">Basée à Abidjan</span></div>
+</div></div>
 
-  <h2 class="section-title fr">5 secteurs clés<br />pour l'Afrique de demain</h2>
-  <h2 class="section-title en hidden">5 key sectors<br />for tomorrow's Africa</h2>
-
-  <p class="section-desc fr">AFRICAViT opère dans les secteurs à plus fort potentiel de croissance sur le continent.</p>
-  <p class="section-desc en hidden">AFRICAViT operates in the sectors with the highest growth potential on the continent.</p>
-
-  <div class="sectors-grid">
-    <div class="sector-card">
-      <span class="sector-icon">🌾</span>
-      <div class="sector-name fr">Agro-industrie</div>
-      <div class="sector-name en hidden">Agro-industry</div>
-      <div class="sector-sub fr">Agriculture, transformation, chaîne de valeur</div>
-      <div class="sector-sub en hidden">Agriculture, processing, value chain</div>
-    </div>
-    <div class="sector-card">
-      <span class="sector-icon">⚡</span>
-      <div class="sector-name fr">Énergie</div>
-      <div class="sector-name en hidden">Energy</div>
-      <div class="sector-sub fr">Solaire, hydraulique, accès universel</div>
-      <div class="sector-sub en hidden">Solar, hydro, universal access</div>
-    </div>
-    <div class="sector-card">
-      <span class="sector-icon">🏗️</span>
-      <div class="sector-name fr">Infrastructure</div>
-      <div class="sector-name en hidden">Infrastructure</div>
-      <div class="sector-sub fr">BTP, logistique, transport</div>
-      <div class="sector-sub en hidden">Construction, logistics, transport</div>
-    </div>
-    <div class="sector-card">
-      <span class="sector-icon">💊</span>
-      <div class="sector-name fr">Santé</div>
-      <div class="sector-name en hidden">Healthcare</div>
-      <div class="sector-sub fr">Hôpitaux, pharma, télémédecine</div>
-      <div class="sector-sub en hidden">Hospitals, pharma, telemedicine</div>
-    </div>
-    <div class="sector-card">
-      <span class="sector-icon">📱</span>
-      <div class="sector-name fr">Tech & Numérique</div>
-      <div class="sector-name en hidden">Tech & Digital</div>
-      <div class="sector-sub fr">Fintech, mobile, e-gouvernement</div>
-      <div class="sector-sub en hidden">Fintech, mobile, e-government</div>
-    </div>
+<!-- Services -->
+<section id="services"><div class="wrap">
+  <div class="sec-head reveal">
+    <span class="eyebrow" data-fr="Nos services" data-en="Our services">Nos services</span>
+    <h2 data-fr="Un accompagnement complet, du contact à la transaction" data-en="End-to-end support, from contact to transaction">Un accompagnement complet, du contact à la transaction</h2>
+    <p data-fr="Huit domaines d'expertise pour faire avancer vos affaires entre l'Afrique et le reste du monde." data-en="Eight areas of expertise to move your business between Africa and the world.">Huit domaines d'expertise pour faire avancer vos affaires entre l'Afrique et le reste du monde.</p>
   </div>
-</section>
+  <div class="svc-grid reveal">
+    <div class="svc"><div class="num">01</div><h3 data-fr="Représentation commerciale" data-en="Commercial representation">Représentation commerciale</h3><p data-fr="Mise en relation des entreprises africaines avec des partenaires internationaux." data-en="Connecting African companies with international partners.">Mise en relation des entreprises africaines avec des partenaires internationaux.</p></div>
+    <div class="svc"><div class="num">02</div><h3 data-fr="Conseil stratégique" data-en="Strategic consulting">Conseil stratégique</h3><p data-fr="Accompagnement au développement Afrique ↔ Europe, Asie et Amériques." data-en="Development support across Africa ↔ Europe, Asia and the Americas.">Accompagnement au développement Afrique ↔ Europe, Asie et Amériques.</p></div>
+    <div class="svc"><div class="num">03</div><h3 data-fr="Support administratif & fiscal" data-en="Administrative & tax support">Support administratif & fiscal</h3><p data-fr="Aide aux démarches d'implantation et de conformité." data-en="Assistance with setup and compliance procedures.">Aide aux démarches d'implantation et de conformité.</p></div>
+    <div class="svc"><div class="num">04</div><h3 data-fr="Foncier agricole" data-en="Agricultural land">Foncier agricole</h3><p data-fr="Acquisition et valorisation de terres agricoles." data-en="Acquisition and development of agricultural land.">Acquisition et valorisation de terres agricoles.</p></div>
+    <div class="svc"><div class="num">05</div><h3 data-fr="Logistique" data-en="Logistics">Logistique</h3><p data-fr="Gestion des flux import-export de bout en bout." data-en="End-to-end import-export flow management.">Gestion des flux import-export de bout en bout.</p></div>
+    <div class="svc"><div class="num">06</div><h3 data-fr="Ressources humaines" data-en="Human resources">Ressources humaines</h3><p data-fr="Recrutement et placement de talents qualifiés." data-en="Recruitment and placement of qualified talent.">Recrutement et placement de talents qualifiés.</p></div>
+    <div class="svc"><div class="num">07</div><h3 data-fr="Promotion des investissements" data-en="Investment promotion">Promotion des investissements</h3><p data-fr="Attraction de capitaux vers les marchés africains." data-en="Attracting capital toward African markets.">Attraction de capitaux vers les marchés africains.</p></div>
+    <div class="svc"><div class="num">08</div><h3 data-fr="Import / Export général" data-en="General import / export">Import / Export général</h3><p data-fr="Négoce de marchandises toutes catégories." data-en="Trading of goods across all categories.">Négoce de marchandises toutes catégories.</p></div>
+  </div>
+</div></section>
 
-<!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
-<section id="about">
+<!-- Sectors -->
+<section id="secteurs" class="sectors"><div class="wrap">
+  <div class="sec-head reveal">
+    <span class="eyebrow" data-fr="Secteurs clés" data-en="Key sectors">Secteurs clés</span>
+    <h2 data-fr="Les filières où nous créons de la valeur" data-en="The sectors where we create value">Les filières où nous créons de la valeur</h2>
+  </div>
+  <div class="sec-grid reveal">
+    <div class="sector"><div class="ic">🌾</div><h4 data-fr="Agriculture" data-en="Agriculture">Agriculture</h4><p data-fr="Foncier, filières et transformation" data-en="Land, value chains and processing">Foncier, filières et transformation</p></div>
+    <div class="sector"><div class="ic">🚢</div><h4 data-fr="Négoce" data-en="Trading">Négoce</h4><p data-fr="Import-export de marchandises" data-en="Import-export of goods">Import-export de marchandises</p></div>
+    <div class="sector"><div class="ic">🏗️</div><h4 data-fr="Investissement" data-en="Investment">Investissement</h4><p data-fr="Mobilisation de capitaux" data-en="Capital mobilization">Mobilisation de capitaux</p></div>
+    <div class="sector"><div class="ic">📦</div><h4 data-fr="Logistique" data-en="Logistics">Logistique</h4><p data-fr="Chaîne d'approvisionnement" data-en="Supply chain">Chaîne d'approvisionnement</p></div>
+    <div class="sector"><div class="ic">🤝</div><h4 data-fr="Services" data-en="Services">Services</h4><p data-fr="Conseil et facilitation" data-en="Consulting and facilitation">Conseil et facilitation</p></div>
+  </div>
+</div></section>
+
+<!-- About -->
+<section id="apropos"><div class="wrap">
   <div class="about-grid">
-    <div class="about-text">
-      <div class="section-tag fr">À propos d'AFRICAViT</div>
-      <div class="section-tag en hidden">About AFRICAViT</div>
-
-      <h2 class="section-title fr">Une vision,<br />un continent</h2>
-      <h2 class="section-title en hidden">One vision,<br />one continent</h2>
-
-      <p class="fr">AFRICAViT est née d'une conviction profonde : l'Afrique représente l'une des plus grandes opportunités économiques du XXIe siècle. Notre mission est de lever les barrières qui séparent les ambitions mondiales des réalités africaines.</p>
-      <p class="en hidden">AFRICAViT was born from a deep conviction: Africa represents one of the greatest economic opportunities of the 21st century. Our mission is to remove the barriers that separate global ambitions from African realities.</p>
-
-      <p class="fr">Ancrés dans le continent et connectés au monde, nos experts combinent une connaissance intime des marchés locaux avec une expertise internationale de premier plan.</p>
-      <p class="en hidden">Rooted in the continent and connected to the world, our experts combine an intimate knowledge of local markets with leading international expertise.</p>
-
-      <ul class="values-list">
-        <li class="fr">Excellence et rigueur dans chaque mission</li>
-        <li class="en hidden">Excellence and rigour in every engagement</li>
-        <li class="fr">Intégrité et transparence comme fondement</li>
-        <li class="en hidden">Integrity and transparency as our foundation</li>
-        <li class="fr">Impact durable pour les populations africaines</li>
-        <li class="en hidden">Lasting impact for African communities</li>
-        <li class="fr">Partenariat de long terme avec nos clients</li>
-        <li class="en hidden">Long-term partnership with our clients</li>
-      </ul>
+    <div class="reveal">
+      <span class="eyebrow" data-fr="À propos" data-en="About">À propos</span>
+      <h2 style="font-size:38px;color:var(--navy);margin-bottom:18px" data-fr="Une entreprise pensée pour relier les marchés" data-en="A company built to bridge markets">Une entreprise pensée pour relier les marchés</h2>
+      <p data-fr="AFRICAViT SARL est une société panafricaine de commerce international, d'intermédiation et de développement d'affaires. Notre mission : ouvrir aux entreprises africaines les portes des marchés internationaux, et inversement faciliter l'accès des partenaires étrangers au potentiel africain." data-en="AFRICAViT SARL is a pan-African company for international trade, intermediation and business development. Our mission: to open international markets to African businesses, and to give foreign partners access to Africa's potential.">AFRICAViT SARL est une société panafricaine de commerce international, d'intermédiation et de développement d'affaires. Notre mission : ouvrir aux entreprises africaines les portes des marchés internationaux, et inversement faciliter l'accès des partenaires étrangers au potentiel africain.</p>
+      <p data-fr="Basée à Abidjan, AFRICAViT intervient sur l'ensemble de la chaîne de valeur : de la mise en relation initiale jusqu'à la concrétisation des transactions commerciales." data-en="Based in Abidjan, AFRICAViT operates across the entire value chain: from the first introduction to the completion of commercial transactions.">Basée à Abidjan, AFRICAViT intervient sur l'ensemble de la chaîne de valeur : de la mise en relation initiale jusqu'à la concrétisation des transactions commerciales.</p>
     </div>
-
-    <div class="founder-card">
-      <blockquote class="founder-quote fr">
-        L'Afrique n'a pas besoin de pitié, elle a besoin de partenaires.
-        Chez AFRICAViT, nous bâtissons ces ponts — avec sérieux, avec passion et avec une foi absolue dans le potentiel du continent.
-      </blockquote>
-      <blockquote class="founder-quote en hidden">
-        Africa doesn't need pity — it needs partners.
-        At AFRICAViT, we build these bridges — with seriousness, passion and absolute faith in the continent's potential.
-      </blockquote>
-
-      <div class="founder-info">
-        <div class="founder-avatar">F</div>
-        <div>
-          <div class="founder-name">Le Fondateur</div>
-          <div class="founder-role fr">Président & Directeur Général, AFRICAViT</div>
-          <div class="founder-role en hidden">Founder & Chief Executive Officer, AFRICAViT</div>
-        </div>
-      </div>
+    <div class="founder reveal">
+      <div class="role" data-fr="Le mot du fondateur" data-en="Founder's word">Le mot du fondateur</div>
+      <h3 data-fr="Bâtir des ponts durables" data-en="Building lasting bridges">Bâtir des ponts durables</h3>
+      <blockquote data-fr="« L'Afrique n'a pas besoin d'intermédiaires de plus — elle a besoin de partenaires de confiance qui comprennent ses marchés et savent les connecter au monde. C'est notre raison d'être. »" data-en="“Africa doesn't need more middlemen — it needs trusted partners who understand its markets and know how to connect them to the world. That's our purpose.”">« L'Afrique n'a pas besoin d'intermédiaires de plus — elle a besoin de partenaires de confiance qui comprennent ses marchés et savent les connecter au monde. C'est notre raison d'être. »</blockquote>
     </div>
   </div>
-</section>
+</div></section>
 
-<!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
-<section id="contact">
-  <div class="section-tag fr">Contactez-nous</div>
-  <div class="section-tag en hidden">Contact us</div>
-
-  <h2 class="section-title fr">Parlons de<br />votre projet</h2>
-  <h2 class="section-title en hidden">Let's talk about<br />your project</h2>
-
+<!-- Contact -->
+<section id="contact" class="contact"><div class="wrap">
+  <div class="sec-head reveal">
+    <span class="eyebrow" data-fr="Contact" data-en="Contact">Contact</span>
+    <h2 data-fr="Parlons de votre projet" data-en="Let's talk about your project">Parlons de votre projet</h2>
+  </div>
   <div class="contact-grid">
-    <div class="contact-info">
-      <h3 class="fr">Entrons en contact</h3>
-      <h3 class="en hidden">Get in touch</h3>
-      <p class="fr">Notre équipe est disponible pour étudier votre projet et vous proposer l'accompagnement le plus adapté à vos objectifs africains.</p>
-      <p class="en hidden">Our team is available to study your project and propose the support best suited to your African objectives.</p>
-
-      <div class="contact-item">
-        <div class="contact-icon">📧</div>
-        <div class="contact-detail">
-          <strong>Email</strong>
-          <span>contact@africavit.com</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <div class="contact-detail">
-          <strong class="fr">Siège</strong>
-          <strong class="en hidden">Headquarters</strong>
-          <span>Abidjan · Paris · Dubaï</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">🌐</div>
-        <div class="contact-detail">
-          <strong class="fr">Présence</strong>
-          <strong class="en hidden">Presence</strong>
-          <span class="fr">Afrique subsaharienne & Maghreb</span>
-          <span class="en hidden">Sub-Saharan Africa & Maghreb</span>
-        </div>
-      </div>
+    <div class="reveal">
+      <div class="c-item"><div class="ic">✉</div><div><b data-fr="Email" data-en="Email">Email</b><span>contact@africavit.com<br>vision@africavit.com</span></div></div>
+      <div class="c-item"><div class="ic">🌐</div><div><b data-fr="Site web" data-en="Website">Site web</b><span>www.africavit.com</span></div></div>
+      <div class="c-item"><div class="ic">📍</div><div><b data-fr="Siège" data-en="Headquarters">Siège</b><span>Cocody-Angré, Lot 4527 — Abidjan, Côte d'Ivoire</span></div></div>
+      <div class="c-item"><div class="ic">🕐</div><div><b data-fr="Horaires" data-en="Hours">Horaires</b><span data-fr="Lun – Ven · 08h – 18h" data-en="Mon – Fri · 8am – 6pm">Lun – Ven · 08h – 18h</span></div></div>
     </div>
-
-    <div class="contact-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label class="fr">Prénom *</label>
-          <label class="en hidden">First name *</label>
-          <input type="text" placeholder="Jean" />
-        </div>
-        <div class="form-group">
-          <label class="fr">Nom *</label>
-          <label class="en hidden">Last name *</label>
-          <input type="text" placeholder="Dupont" />
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>Email *</label>
-          <input type="email" placeholder="jean@entreprise.com" />
-        </div>
-        <div class="form-group">
-          <label class="fr">Organisation</label>
-          <label class="en hidden">Organisation</label>
-          <input type="text" placeholder="Mon Entreprise" />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="fr">Service concerné</label>
-        <label class="en hidden">Service of interest</label>
-        <select>
-          <option value="" class="fr">Sélectionnez un service...</option>
-          <option value="" class="en hidden">Select a service...</option>
-          <option class="fr">01 — Intelligence de marché</option>
-          <option class="en hidden">01 — Market Intelligence</option>
-          <option class="fr">02 — Conseil en investissement</option>
-          <option class="en hidden">02 — Investment Advisory</option>
-          <option class="fr">03 — Relations institutionnelles</option>
-          <option class="en hidden">03 — Institutional Relations</option>
-          <option class="fr">04 — Conseil juridique & conformité</option>
-          <option class="en hidden">04 — Legal & Compliance</option>
-          <option class="fr">05 — Implantation & développement</option>
-          <option class="en hidden">05 — Business Setup & Expansion</option>
-          <option class="fr">06 — Partenariats stratégiques</option>
-          <option class="en hidden">06 — Strategic Partnerships</option>
-          <option class="fr">07 — Innovation & digital</option>
-          <option class="en hidden">07 — Innovation & Digital</option>
-          <option class="fr">08 — Formation & capacités</option>
-          <option class="en hidden">08 — Training & Capacity Building</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label class="fr">Votre message *</label>
-        <label class="en hidden">Your message *</label>
-        <textarea class="fr" placeholder="Décrivez votre projet ou votre besoin..."></textarea>
-        <textarea class="en hidden" placeholder="Describe your project or need..."></textarea>
-      </div>
-
-      <button type="button" class="form-submit fr" onclick="alert('Message envoyé ! Notre équipe vous contactera sous 48h.')">
-        Envoyer le message →
-      </button>
-      <button type="button" class="form-submit en hidden" onclick="alert('Message sent! Our team will contact you within 48 hours.')">
-        Send message →
-      </button>
+    <div class="form reveal">
+      <input type="text" placeholder="Nom complet" data-fr-ph="Nom complet" data-en-ph="Full name">
+      <input type="email" placeholder="Email" data-fr-ph="Email" data-en-ph="Email">
+      <input type="text" placeholder="Sujet" data-fr-ph="Sujet" data-en-ph="Subject">
+      <textarea rows="4" placeholder="Votre message" data-fr-ph="Votre message" data-en-ph="Your message"></textarea>
+      <button type="button" onclick="sendMsg()" data-fr="Envoyer le message" data-en="Send message">Envoyer le message</button>
     </div>
   </div>
-</section>
+</div></section>
 
-<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
-<footer>
-  <div>
-    <span style="color:var(--gold);font-weight:700;">AFRICAViT SARL</span> — Votre passerelle vers l'Afrique
-    &nbsp;·&nbsp;
-    <span class="fr">© 2025 Tous droits réservés</span>
-    <span class="en hidden">© 2025 All rights reserved</span>
+<!-- Footer -->
+<footer><div class="wrap">
+  <a class="brand" href="#"><span class="logo-mark">A</span><b>AFRICA<span style="color:var(--gold-bright)">ViT</span></b></a>
+  <div class="fsocial">
+    <a href="#" aria-label="LinkedIn">in</a>
+    <a href="#" aria-label="Facebook">f</a>
+    <a href="#" aria-label="WhatsApp">✆</a>
   </div>
-  <div class="footer-links">
-    <a href="#" class="fr">Mentions légales</a>
-    <a href="#" class="en hidden">Legal notice</a>
-    <a href="#" class="fr">Politique de confidentialité</a>
-    <a href="#" class="en hidden">Privacy policy</a>
-    <a href="mailto:contact@africavit.com">contact@africavit.com</a>
-  </div>
+</div>
+<div class="wrap fbottom" data-fr="© 2026 AFRICAViT SARL — Tous droits réservés · Abidjan, Côte d'Ivoire" data-en="© 2026 AFRICAViT SARL — All rights reserved · Abidjan, Côte d'Ivoire">© 2026 AFRICAViT SARL — Tous droits réservés · Abidjan, Côte d'Ivoire</div>
 </footer>
 
-<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
 <script>
-  function setLang(lang) {
-    // Toggle elements
-    document.querySelectorAll('.fr').forEach(el => {
-      el.classList.toggle('hidden', lang !== 'fr');
-    });
-    document.querySelectorAll('.en').forEach(el => {
-      el.classList.toggle('hidden', lang !== 'en');
-    });
-
-    // Update buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
-    document.querySelector('.lang-btn[onclick="setLang(\'' + lang + '\')"]').classList.add('active');
-
-    // Update html lang attr
-    document.documentElement.lang = lang;
-  }
-
-  // Smooth nav highlight on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav ul a');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--gold)'
-        : '';
-    });
-  });
+function setLang(l){
+  document.getElementById('b-fr').classList.toggle('active',l==='fr');
+  document.getElementById('b-en').classList.toggle('active',l==='en');
+  document.querySelectorAll('[data-fr]').forEach(e=>{e.innerHTML=e.getAttribute('data-'+l)});
+  document.querySelectorAll('[data-fr-ph]').forEach(e=>{e.placeholder=e.getAttribute('data-'+l+'-ph')});
+  document.documentElement.lang=l;
+}
+function sendMsg(){alert('Merci ! Votre message a bien été pris en compte.');}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
 </script>
-
 </body>
 </html>
