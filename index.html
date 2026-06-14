@@ -193,8 +193,8 @@
     <a href="#apropos" data-fr="À propos" data-en="About">À propos</a>
     <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
     <div class="lang">
-      <button onclick="setLang('fr')" id="b-fr" class="active">FR</button>
-      <button onclick="setLang('en')" id="b-en">EN</button>
+      <button onclick="setLang('fr')" id="b-fr" class="active" data-lang="fr">FR</button>
+      <button onclick="setLang('en')" id="b-en" data-lang="en">EN</button>
     </div>
     <a href="#contact" class="cta-nav" data-fr="Démarrer un projet" data-en="Start a project">Démarrer un projet</a>
   </div>
@@ -356,23 +356,22 @@
   // Language switcher
   function setLang(lang) {
     document.querySelectorAll('[data-fr]').forEach(el => {
-      if (lang === 'fr') {
-        el.innerHTML = el.dataset.fr;
-      } else {
-        el.innerHTML = el.dataset.en;
-      }
+      const val = lang === 'fr' ? el.dataset.fr : el.dataset.en;
+      if (val !== undefined) el.innerHTML = val;
     });
-    document.querySelectorAll('.lang button').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
+    // Update placeholder text for form inputs
+    document.querySelectorAll('[data-fr-ph]').forEach(el => {
+      el.placeholder = lang === 'fr' ? el.dataset.frPh : el.dataset.enPh;
     });
-    localStorage.setItem('lang', lang);
+    // Update active button
+    document.getElementById('b-fr').classList.toggle('active', lang === 'fr');
+    document.getElementById('b-en').classList.toggle('active', lang === 'en');
+    try { localStorage.setItem('lang', lang); } catch(e) {}
   }
 
   // Init language
-  const savedLang = localStorage.getItem('lang') || 'fr';
-  document.querySelectorAll('.lang button').forEach(btn => {
-    btn.addEventListener('click', () => setLang(btn.dataset.lang));
-  });
+  let savedLang = 'fr';
+  try { savedLang = localStorage.getItem('lang') || 'fr'; } catch(e) {}
   setLang(savedLang);
 
   // Reveal animation
