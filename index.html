@@ -129,6 +129,8 @@
   .sector .ic{font-size:26px;margin-bottom:12px}
   .sector h4{font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--gold-bright);margin-bottom:6px}
   .sector p{font-size:13px;color:rgba(255,255,255,.6)}
+  .sector-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:600;color:var(--gold-bright);transition:gap .2s;cursor:pointer}
+  .sector-link:hover{gap:10px}
 
   /* About */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
@@ -240,9 +242,9 @@
 
 <!-- Ticker -->
 <div class="ticker"><div class="wrap">
-  <div class="stat"><b>3</b><span data-fr="Continents couverts" data-en="Continents covered">Continents couverts</span></div>
+  <div class="stat"><b>4</b><span data-fr="Continents couverts" data-en="Continents covered">Continents couverts</span></div>
   <div class="stat"><b>7</b><span data-fr="Domaines d'activité" data-en="Business areas">Domaines d'activité</span></div>
-  <div class="stat"><b>360°</b><span data-fr="Accompagnement" data-en="Full support">Accompagnement</span></div>
+  <div class="stat" style="cursor:pointer" onclick="openMod('modal-360')"><b>360°</b><span data-fr="Accompagnement ℹ" data-en="Full support ℹ">Accompagnement ℹ</span></div>
   <div class="stat"><b>CI</b><span data-fr="Basée à Abidjan" data-en="Based in Abidjan">Basée à Abidjan</span></div>
 </div></div>
 
@@ -303,11 +305,11 @@
     <h2 data-fr="Les filières où nous créons de la valeur" data-en="The sectors where we create value">Les filières où nous créons de la valeur</h2>
   </div>
   <div class="sec-grid reveal">
-    <div class="sector"><div class="ic">🌾</div><h4 data-fr="Agriculture" data-en="Agriculture">Agriculture</h4><p data-fr="Foncier, filières et transformation" data-en="Land, value chains and processing">Foncier, filières et transformation</p></div>
-    <div class="sector"><div class="ic">🚢</div><h4 data-fr="Négoce" data-en="Trading">Négoce</h4><p data-fr="Import-export de marchandises" data-en="Import-export of goods">Import-export de marchandises</p></div>
-    <div class="sector"><div class="ic">🏗️</div><h4 data-fr="Investissement" data-en="Investment">Investissement</h4><p data-fr="Mobilisation de capitaux" data-en="Capital mobilization">Mobilisation de capitaux</p></div>
-    <div class="sector"><div class="ic">📦</div><h4 data-fr="Logistique" data-en="Logistics">Logistique</h4><p data-fr="Chaîne d'approvisionnement" data-en="Supply chain">Chaîne d'approvisionnement</p></div>
-    <div class="sector"><div class="ic">🤝</div><h4 data-fr="Services" data-en="Services">Services</h4><p data-fr="Conseil et facilitation" data-en="Consulting and facilitation">Conseil et facilitation</p></div>
+    <div class="sector"><div class="ic">🌾</div><h4 data-fr="Agriculture" data-en="Agriculture">Agriculture</h4><p data-fr="Foncier, filières et transformation" data-en="Land, value chains and processing">Foncier, filières et transformation</p><a href="#" onclick="openMod('modal-sec-agriculture');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="sector"><div class="ic">🚢</div><h4 data-fr="Négoce" data-en="Trading">Négoce</h4><p data-fr="Import-export de marchandises" data-en="Import-export of goods">Import-export de marchandises</p><a href="#" onclick="openMod('modal-sec-negoce');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="sector"><div class="ic">🏗️</div><h4 data-fr="Investissement" data-en="Investment">Investissement</h4><p data-fr="Mobilisation de capitaux" data-en="Capital mobilization">Mobilisation de capitaux</p><a href="#" onclick="openMod('modal-sec-investissement');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="sector"><div class="ic">📦</div><h4 data-fr="Logistique" data-en="Logistics">Logistique</h4><p data-fr="Chaîne d'approvisionnement" data-en="Supply chain">Chaîne d'approvisionnement</p><a href="#" onclick="openMod('modal-sec-logistique');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="sector"><div class="ic">🤝</div><h4 data-fr="Services" data-en="Services">Services</h4><p data-fr="Conseil et facilitation" data-en="Consulting and facilitation">Conseil et facilitation</p><a href="#" onclick="openMod('modal-sec-services');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
   </div>
 </div></section>
 
@@ -509,4 +511,243 @@
     <p data-fr="Pour exercer ces droits, contactez-nous à :" data-en="To exercise these rights, contact us at:">Pour exercer ces droits, contactez-nous à : <a href="mailto:contact@africavit.com">contact@africavit.com</a></p>
 
     <h3 data-fr="Cookies" data-en="Cookies">Cookies</h3>
-    <p data-fr="Ce site n'utilise pas de cookies de traçage ou publicitaires. Seuls des cookies techniques essentiels au bon fonctionnement du site peuvent être utilisés." data-en="This site does not use tracking or advertising cookies. Onl
+    <p data-fr="Ce site n'utilise pas de cookies de traçage ou publicitaires. Seuls des cookies techniques essentiels au bon fonctionnement du site peuvent être utilisés." data-en="This site does not use tracking or advertising cookies. Only technical cookies essential to the proper functioning of the site may be used.">Ce site n'utilise pas de cookies de traçage ou publicitaires. Seuls des cookies techniques essentiels au bon fonctionnement du site peuvent être utilisés.</p>
+
+    <h3 data-fr="Hébergement" data-en="Hosting">Hébergement</h3>
+    <p data-fr="Ce site est hébergé par Netlify (San Francisco, USA). Pour leur politique de confidentialité :" data-en="This site is hosted by Netlify (San Francisco, USA). For their privacy policy:">Ce site est hébergé par Netlify (San Francisco, USA). Pour leur politique de confidentialité : <a href="https://www.netlify.com/privacy/" target="_blank">netlify.com/privacy</a></p>
+  </div>
+</div>
+
+<!-- Service Modals -->
+<div id="modal-svc-01" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-svc-01')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-svc-01')">×</button>
+    <h2 data-fr="Représentation, intermédiation & promotion" data-en="Representation, brokerage & promotion">Représentation, intermédiation & promotion</h2>
+    <span class="modal-date" data-fr="Domaine 01 — AFRICAViT" data-en="Domain 01 — AFRICAViT">Domaine 01 — AFRICAViT</span>
+    <p data-fr="AFRICAViT agit en tant que représentant officiel ou agent commercial de vos structures sur les marchés africains et internationaux. Nous facilitons les mises en relation stratégiques entre entreprises africaines et partenaires étrangers (Europe, Asie, Amériques) souhaitant opérer en Côte d'Ivoire et en Afrique de l'Ouest." data-en="AFRICAViT acts as official representative or commercial agent for your organizations on African and international markets. We facilitate strategic connections between African companies and foreign partners (Europe, Asia, Americas) wishing to operate in Côte d'Ivoire and West Africa.">AFRICAViT agit en tant que représentant officiel ou agent commercial de vos structures sur les marchés africains et internationaux. Nous facilitons les mises en relation stratégiques entre entreprises africaines et partenaires étrangers (Europe, Asie, Amériques) souhaitant opérer en Côte d'Ivoire et en Afrique de l'Ouest.</p>
+    <h3 data-fr="Ce que nous faisons" data-en="What we do">Ce que nous faisons</h3>
+    <ul>
+      <li data-fr="Représentation commerciale et institutionnelle" data-en="Commercial and institutional representation">Représentation commerciale et institutionnelle</li>
+      <li data-fr="Prospection de partenaires et clients cibles" data-en="Prospecting for target partners and clients">Prospection de partenaires et clients cibles</li>
+      <li data-fr="Intermédiation dans les négociations commerciales" data-en="Mediation in commercial negotiations">Intermédiation dans les négociations commerciales</li>
+      <li data-fr="Promotion de vos produits, services et marques en Afrique" data-en="Promotion of your products, services and brands in Africa">Promotion de vos produits, services et marques en Afrique</li>
+      <li data-fr="Organisation de rencontres B2B et de missions commerciales" data-en="Organisation of B2B meetings and trade missions">Organisation de rencontres B2B et de missions commerciales</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-svc-01')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<div id="modal-svc-02" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-svc-02')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-svc-02')">×</button>
+    <h2 data-fr="Études, conseil stratégique & conformité" data-en="Studies, strategic consulting & compliance">Études, conseil stratégique & conformité</h2>
+    <span class="modal-date" data-fr="Domaine 02 — AFRICAViT" data-en="Domain 02 — AFRICAViT">Domaine 02 — AFRICAViT</span>
+    <p data-fr="Nous accompagnons les entreprises et investisseurs dans leurs prises de décision grâce à des analyses rigoureuses et un conseil stratégique adapté aux réalités du marché ivoirien et ouest-africain." data-en="We support companies and investors in their decision-making through rigorous analysis and strategic advice tailored to the realities of the Ivorian and West African market.">Nous accompagnons les entreprises et investisseurs dans leurs prises de décision grâce à des analyses rigoureuses et un conseil stratégique adapté aux réalités du marché ivoirien et ouest-africain.</p>
+    <h3 data-fr="Ce que nous faisons" data-en="What we do">Ce que nous faisons</h3>
+    <ul>
+      <li data-fr="Études de marché et analyses sectorielles" data-en="Market studies and sector analyses">Études de marché et analyses sectorielles</li>
+      <li data-fr="Études de faisabilité technique, économique et financière" data-en="Technical, economic and financial feasibility studies">Études de faisabilité technique, économique et financière</li>
+      <li data-fr="Conseil juridique et conformité réglementaire" data-en="Legal advice and regulatory compliance">Conseil juridique et conformité réglementaire</li>
+      <li data-fr="Diagnostic d'entreprise et plan stratégique" data-en="Business diagnosis and strategic plan">Diagnostic d'entreprise et plan stratégique</li>
+      <li data-fr="Veille concurrentielle et intelligence économique" data-en="Competitive monitoring and business intelligence">Veille concurrentielle et intelligence économique</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-svc-02')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<div id="modal-svc-03" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-svc-03')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-svc-03')">×</button>
+    <h2 data-fr="Appui aux sociétés étrangères" data-en="Support for foreign companies">Appui aux sociétés étrangères</h2>
+    <span class="modal-date" data-fr="Domaine 03 — AFRICAViT" data-en="Domain 03 — AFRICAViT">Domaine 03 — AFRICAViT</span>
+    <p data-fr="AFRICAViT est le partenaire de confiance des sociétés étrangères qui souhaitent s'implanter ou développer leurs activités en Côte d'Ivoire et en Afrique de l'Ouest. Nous levons les barrières administratives, juridiques et culturelles pour faciliter votre entrée sur le marché." data-en="AFRICAViT is the trusted partner for foreign companies wishing to establish themselves or develop their activities in Côte d'Ivoire and West Africa. We remove administrative, legal and cultural barriers to facilitate your market entry.">AFRICAViT est le partenaire de confiance des sociétés étrangères qui souhaitent s'implanter ou développer leurs activités en Côte d'Ivoire et en Afrique de l'Ouest. Nous levons les barrières administratives, juridiques et culturelles pour faciliter votre entrée sur le marché.</p>
+    <h3 data-fr="Ce que nous faisons" data-en="What we do">Ce que nous faisons</h3>
+    <ul>
+      <li data-fr="Identification et sélection de partenaires locaux fiables" data-en="Identification and selection of reliable local partners">Identification et sélection de partenaires locaux fiables</li>
+      <li data-fr="Domiciliation et création de structures locales" data-en="Domiciliation and creation of local structures">Domiciliation et création de structures locales</li>
+      <li data-fr="Appui administratif et juridique à l'implantation" data-en="Administrative and legal support for establishment">Appui administratif et juridique à l'implantation</li>
+      <li data-fr="Conseil fiscal et optimisation de la structure" data-en="Tax advice and structure optimisation">Conseil fiscal et optimisation de la structure</li>
+      <li data-fr="Accompagnement culturel et opérationnel" data-en="Cultural and operational support">Accompagnement culturel et opérationnel</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-svc-03')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<div id="modal-svc-04" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-svc-04')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-svc-04')">×</button>
+    <h2 data-fr="Foncier agricole & biens ruraux" data-en="Agricultural land & rural assets">Foncier agricole & biens ruraux</h2>
+    <span class="modal-date" data-fr="Domaine 04 — AFRICAViT" data-en="Domain 04 — AFRICAViT">Domaine 04 — AFRICAViT</span>
+    <p data-fr="Nous intervenons dans la sécurisation, l'acquisition et la valorisation de terres agricoles en Côte d'Ivoire, dans le strict respect de la législation foncière ivoirienne (loi de 1998 et ses décrets d'application)." data-en="We intervene in the securing, acquisition and development of agricultural land in Côte d'Ivoire, in strict compliance with Ivorian land legislation (1998 law and its implementing decrees).">Nous intervenons dans la sécurisation, l'acquisition et la valorisation de terres agricoles en Côte d'Ivoire, dans le strict respect de la législation foncière ivoirienne (loi de 1998 et ses décrets d'application).</p>
+    <h3 data-fr="Ce que nous faisons" data-en="What we do">Ce que nous faisons</h3>
+    <ul>
+      <li data-fr="Identification et prospection de terrains agricoles" data-en="Identification and prospecting of agricultural land">Identification et prospection de terrains agricoles</li>
+      <li data-fr="Montage des dossiers d'acquisition et de bail" data-en="Preparation of acquisition and lease files">Montage des dossiers d'acquisition et de bail</li>
+      <li data-fr="Sécurisation juridique et foncière" data-en="Legal and land security">Sécurisation juridique et foncière</li>
+      <li data-fr="Gestion et mise en valeur des propriétés rurales" data-en="Management and development of rural properties">Gestion et mise en valeur des propriétés rurales</li>
+      <li data-fr="Conseil agronomique et accompagnement des projets agricoles" data-en="Agronomic advice and support for agricultural projects">Conseil agronomique et accompagnement des projets agricoles</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-svc-04')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<div id="modal-svc-05" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-svc-05')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-svc-05')">×</button>
+    <h2 data-fr="Services administratifs, logistiques & opérationnels" data-en="Administrative, logistics & operational services">Services administratifs, logistiques & opérationnels</h2>
+    <span class="modal-date" data-fr="Domaine 05 — AFRICAViT" data-en="Domain 05 — AFRICAViT">Domaine 05 — AFRICAViT</span>
+    <p data-fr="AFRICAViT prend en charge la gestion opérationnelle de bout en bout de vos flux commerciaux : du dédouanement à la livraison finale, en passant par le stockage et la certification." data-en="AFRICAViT handles end-to-end operational management of your commercial flows: from customs clearance to final delivery, including storage and certification.">AFRICAViT prend en charge la gestion opérationnelle de bout en bout de vos flux commerciaux : du dédouanement à la livraison finale, en passant par le stockage et la certification.</p>
+    <h3 data-fr="Ce que nous faisons" data-en="What we do">Ce que nous faisons</h3>
+    <ul>
+      <li data-fr="Dédouanement import/export" data-en="Import/export customs clearance">Dédouanement import/export</li>
+      <li data-fr="Transport et logistique multimodale" data-en="Multimodal transport and logistics">Transport et logistique multimodale</li>
+      <li data-fr="Stockage et gestion d'entrepôts" data-en="Storage and warehouse management">Stockage et gestion d'entrepôts</li>
+      <li data-fr="Certification et contrôle qualité" data-en="Certification and quality control">Certification et contrôle qualité</li>
+      <li data-fr="Appui administratif aux opérations courantes" data-en="Administrative support for daily operations">Appui administratif aux opérations courantes</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-svc-05')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<div id="modal-svc-06" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-svc-06')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-svc-06')">×</button>
+    <h2 data-fr="Recrutement, mise à disposition & formation" data-en="Recruitment, staffing & training">Recrutement, mise à disposition & formation</h2>
+    <span class="modal-date" data-fr="Domaine 06 — AFRICAViT" data-en="Domain 06 — AFRICAViT">Domaine 06 — AFRICAViT</span>
+    <p data-fr="Nous aidons les entreprises à trouver les talents dont elles ont besoin — locaux ou expatriés — et à les former aux exigences de leur secteur." data-en="We help companies find the talent they need — local or expatriate — and train them to meet the requirements of their sector.">Nous aidons les entreprises à trouver les talents dont elles ont besoin — locaux ou expatriés — et à les former aux exigences de leur secteur.</p>
+    <h3 data-fr="Ce que nous faisons" data-en="What we do">Ce que nous faisons</h3>
+    <ul>
+      <li data-fr="Recrutement de cadres et d'experts locaux" data-en="Recruitment of local executives and experts">Recrutement de cadres et d'experts locaux</li>
+      <li data-fr="Sourcing et placement d'expatriés" data-en="Sourcing and placement of expatriates">Sourcing et placement d'expatriés</li>
+      <li data-fr="Mise à disposition de personnel qualifié" data-en="Provision of qualified personnel">Mise à disposition de personnel qualifié</li>
+      <li data-fr="Formation professionnelle sur mesure" data-en="Customised professional training">Formation professionnelle sur mesure</li>
+      <li data-fr="Gestion administrative des ressources humaines" data-en="Administrative management of human resources">Gestion administrative des ressources humaines</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-svc-06')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<div id="modal-svc-07" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-svc-07')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-svc-07')">×</button>
+    <h2 data-fr="Promotion des investissements & missions économiques" data-en="Investment promotion & economic missions">Promotion des investissements & missions économiques</h2>
+    <span class="modal-date" data-fr="Domaine 07 — AFRICAViT" data-en="Domain 07 — AFRICAViT">Domaine 07 — AFRICAViT</span>
+    <p data-fr="AFRICAViT construit des ponts entre l'Afrique et le reste du monde pour attirer des capitaux, faciliter les missions économiques et accompagner les investisseurs." data-en="AFRICAViT builds bridges between Africa and the rest of the world to attract capital, facilitate economic missions and support investors.">AFRICAViT construit des ponts entre l'Afrique et le reste du monde pour attirer des capitaux, faciliter les missions économiques et accompagner les investisseurs.</p>
+    <h3 data-fr="Ce que nous faisons" data-en="What we do">Ce que nous faisons</h3>
+    <ul>
+      <li data-fr="Promotion des opportunités d'investissement en Côte d'Ivoire" data-en="Promotion of investment opportunities in Côte d'Ivoire">Promotion des opportunités d'investissement en Côte d'Ivoire</li>
+      <li data-fr="Organisation et accompagnement de missions économiques" data-en="Organisation and support for economic missions">Organisation et accompagnement de missions économiques</li>
+      <li data-fr="Mise en relation investisseurs & porteurs de projets locaux" data-en="Connecting investors with local project holders">Mise en relation investisseurs & porteurs de projets locaux</li>
+      <li data-fr="Accompagnement dans les procédures CEPICI et incitations fiscales" data-en="Support with CEPICI procedures and tax incentives">Accompagnement dans les procédures CEPICI et incitations fiscales</li>
+      <li data-fr="Suivi post-implantation et développement des partenariats" data-en="Post-establishment monitoring and partnership development">Suivi post-implantation et développement des partenariats</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-svc-07')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<!-- Modal 360° -->
+<div id="modal-360" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-360')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-360')">×</button>
+    <h2 data-fr="Accompagnement 360°" data-en="360° Support">Accompagnement 360°</h2>
+    <span class="modal-date" data-fr="Notre promesse — AFRICAViT" data-en="Our promise — AFRICAViT">Notre promesse — AFRICAViT</span>
+    <p data-fr="L'accompagnement 360° d'AFRICAViT signifie que nous intervenons à chaque étape de votre projet, sans laisser de côté aucun aspect stratégique, administratif ou opérationnel." data-en="AFRICAViT's 360° support means we intervene at every stage of your project, leaving no strategic, administrative or operational aspect aside.">L'accompagnement 360° d'AFRICAViT signifie que nous intervenons à chaque étape de votre projet, sans laisser de côté aucun aspect stratégique, administratif ou opérationnel.</p>
+    <h3 data-fr="Ce que couvre notre accompagnement" data-en="What our support covers">Ce que couvre notre accompagnement</h3>
+    <ul>
+      <li data-fr="Avant le projet : études de marché, faisabilité, identification des partenaires" data-en="Before the project: market research, feasibility, partner identification">Avant le projet : études de marché, faisabilité, identification des partenaires</li>
+      <li data-fr="Pendant le projet : représentation, appui administratif, logistique, recrutement" data-en="During the project: representation, administrative support, logistics, recruitment">Pendant le projet : représentation, appui administratif, logistique, recrutement</li>
+      <li data-fr="Après le projet : suivi post-implantation, développement des partenariats, reporting" data-en="After the project: post-establishment monitoring, partnership development, reporting">Après le projet : suivi post-implantation, développement des partenariats, reporting</li>
+      <li data-fr="Sur 4 continents : Afrique, Europe, Asie, Amériques" data-en="Across 4 continents: Africa, Europe, Asia, Americas">Sur 4 continents : Afrique, Europe, Asie, Amériques</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-360')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Démarrer un projet →" data-en="Start a project →">Démarrer un projet →</a></p>
+  </div>
+</div>
+
+<!-- Sector Modals -->
+<div id="modal-sec-agriculture" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-sec-agriculture')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-sec-agriculture')">×</button>
+    <h2 data-fr="🌾 Agriculture" data-en="🌾 Agriculture">🌾 Agriculture</h2>
+    <span class="modal-date" data-fr="Secteur clé — AFRICAViT" data-en="Key sector — AFRICAViT">Secteur clé — AFRICAViT</span>
+    <p data-fr="L'agriculture est l'un des secteurs les plus porteurs de Côte d'Ivoire et d'Afrique de l'Ouest. AFRICAViT accompagne les acteurs du secteur agricole — investisseurs, exploitants et transformateurs — dans leurs projets de développement." data-en="Agriculture is one of the most promising sectors in Côte d'Ivoire and West Africa. AFRICAViT supports agricultural sector players — investors, farmers and processors — in their development projects.">L'agriculture est l'un des secteurs les plus porteurs de Côte d'Ivoire et d'Afrique de l'Ouest. AFRICAViT accompagne les acteurs du secteur agricole — investisseurs, exploitants et transformateurs — dans leurs projets de développement.</p>
+    <h3 data-fr="Notre intervention" data-en="Our intervention">Notre intervention</h3>
+    <ul>
+      <li data-fr="Acquisition et sécurisation de terres agricoles" data-en="Acquisition and securing of agricultural land">Acquisition et sécurisation de terres agricoles</li>
+      <li data-fr="Accompagnement des filières cacao, café, anacarde, hévéa, palmier à huile" data-en="Support for cocoa, coffee, cashew, rubber and palm oil sectors">Accompagnement des filières cacao, café, anacarde, hévéa, palmier à huile</li>
+      <li data-fr="Mise en relation avec des investisseurs et acheteurs internationaux" data-en="Connecting with international investors and buyers">Mise en relation avec des investisseurs et acheteurs internationaux</li>
+      <li data-fr="Appui à la transformation et à la valorisation des produits agricoles" data-en="Support for processing and value-adding of agricultural products">Appui à la transformation et à la valorisation des produits agricoles</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-sec-agriculture')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<div id="modal-sec-negoce" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-sec-negoce')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-sec-negoce')">×</button>
+    <h2 data-fr="🚢 Négoce" data-en="🚢 Trading">🚢 Négoce</h2>
+    <span class="modal-date" data-fr="Secteur clé — AFRICAViT" data-en="Key sector — AFRICAViT">Secteur clé — AFRICAViT</span>
+    <p data-fr="AFRICAViT facilite les opérations d'import-export entre la Côte d'Ivoire et le reste du monde. Nous gérons l'ensemble de la chaîne commerciale, du sourcing à la livraison finale, en passant par le dédouanement et la certification." data-en="AFRICAViT facilitates import-export operations between Côte d'Ivoire and the rest of the world. We manage the entire commercial chain, from sourcing to final delivery, including customs clearance and certification.">AFRICAViT facilite les opérations d'import-export entre la Côte d'Ivoire et le reste du monde. Nous gérons l'ensemble de la chaîne commerciale, du sourcing à la livraison finale, en passant par le dédouanement et la certification.</p>
+    <h3 data-fr="Notre intervention" data-en="Our intervention">Notre intervention</h3>
+    <ul>
+      <li data-fr="Sourcing de produits locaux pour l'export (matières premières, produits transformés)" data-en="Sourcing of local products for export (raw materials, processed products)">Sourcing de produits locaux pour l'export (matières premières, produits transformés)</li>
+      <li data-fr="Import de biens d'équipement, de consommation et de technologie" data-en="Import of capital goods, consumer goods and technology">Import de biens d'équipement, de consommation et de technologie</li>
+      <li data-fr="Dédouanement, transport et logistique multimodale" data-en="Customs clearance, transport and multimodal logistics">Dédouanement, transport et logistique multimodale</li>
+      <li data-fr="Certification et conformité aux normes internationales" data-en="Certification and compliance with international standards">Certification et conformité aux normes internationales</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-sec-negoce')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<div id="modal-sec-investissement" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-sec-investissement')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-sec-investissement')">×</button>
+    <h2 data-fr="🏗️ Investissement" data-en="🏗️ Investment">🏗️ Investissement</h2>
+    <span class="modal-date" data-fr="Secteur clé — AFRICAViT" data-en="Key sector — AFRICAViT">Secteur clé — AFRICAViT</span>
+    <p data-fr="La Côte d'Ivoire est l'une des économies les plus attractives d'Afrique subsaharienne. AFRICAViT accompagne les investisseurs locaux et internationaux dans l'identification, le montage et le suivi de leurs projets d'investissement." data-en="Côte d'Ivoire is one of the most attractive economies in sub-Saharan Africa. AFRICAViT supports local and international investors in identifying, structuring and monitoring their investment projects.">La Côte d'Ivoire est l'une des économies les plus attractives d'Afrique subsaharienne. AFRICAViT accompagne les investisseurs locaux et internationaux dans l'identification, le montage et le suivi de leurs projets d'investissement.</p>
+    <h3 data-fr="Notre intervention" data-en="Our intervention">Notre intervention</h3>
+    <ul>
+      <li data-fr="Identification d'opportunités d'investissement à fort potentiel" data-en="Identification of high-potential investment opportunities">Identification d'opportunités d'investissement à fort potentiel</li>
+      <li data-fr="Mise en relation investisseurs & porteurs de projets" data-en="Connecting investors with project holders">Mise en relation investisseurs & porteurs de projets</li>
+      <li data-fr="Accompagnement dans les procédures CEPICI et incitations fiscales" data-en="Support with CEPICI procedures and tax incentives">Accompagnement dans les procédures CEPICI et incitations fiscales</li>
+      <li data-fr="Montage financier et structuration des projets" data-en="Financial structuring and project setup">Montage financier et structuration des projets</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-sec-investissement')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<div id="modal-sec-logistique" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-sec-logistique')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-sec-logistique')">×</button>
+    <h2 data-fr="📦 Logistique" data-en="📦 Logistics">📦 Logistique</h2>
+    <span class="modal-date" data-fr="Secteur clé — AFRICAViT" data-en="Key sector — AFRICAViT">Secteur clé — AFRICAViT</span>
+    <p data-fr="La logistique est un levier essentiel de la compétitivité des entreprises en Afrique. AFRICAViT offre des solutions logistiques complètes, du stockage à la distribution, adaptées aux réalités du marché ivoirien." data-en="Logistics is an essential lever for business competitiveness in Africa. AFRICAViT offers complete logistics solutions, from storage to distribution, adapted to the realities of the Ivorian market.">La logistique est un levier essentiel de la compétitivité des entreprises en Afrique. AFRICAViT offre des solutions logistiques complètes, du stockage à la distribution, adaptées aux réalités du marché ivoirien.</p>
+    <h3 data-fr="Notre intervention" data-en="Our intervention">Notre intervention</h3>
+    <ul>
+      <li data-fr="Gestion de la chaîne d'approvisionnement de bout en bout" data-en="End-to-end supply chain management">Gestion de la chaîne d'approvisionnement de bout en bout</li>
+      <li data-fr="Transport routier, maritime et aérien" data-en="Road, sea and air transport">Transport routier, maritime et aérien</li>
+      <li data-fr="Stockage et gestion d'entrepôts" data-en="Storage and warehouse management">Stockage et gestion d'entrepôts</li>
+      <li data-fr="Optimisation des coûts logistiques" data-en="Logistics cost optimization">Optimisation des coûts logistiques</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-sec-logistique')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+<div id="modal-sec-services" class="modal-overlay" onclick="if(event.target===this)closeMod('modal-sec-services')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMod('modal-sec-services')">×</button>
+    <h2 data-fr="🤝 Services & Conseil" data-en="🤝 Services & Consulting">🤝 Services & Conseil</h2>
+    <span class="modal-date" data-fr="Secteur clé — AFRICAViT" data-en="Key sector — AFRICAViT">Secteur clé — AFRICAViT</span>
+    <p data-fr="AFRICAViT déploie une expertise transversale en conseil stratégique, facilitation commerciale et accompagnement opérationnel pour aider les entreprises à atteindre leurs objectifs sur les marchés africains." data-en="AFRICAViT deploys cross-functional expertise in strategic consulting, commercial facilitation and operational support to help businesses achieve their goals in African markets.">AFRICAViT déploie une expertise transversale en conseil stratégique, facilitation commerciale et accompagnement opérationnel pour aider les entreprises à atteindre leurs objectifs sur les marchés africains.</p>
+    <h3 data-fr="Notre intervention" data-en="Our intervention">Notre intervention</h3>
+    <ul>
+      <li data-fr="Conseil stratégique et études de marché" data-en="Strategic consulting and market research">Conseil stratégique et études de marché</li>
+      <li data-fr="Facilitation de partenariats commerciaux" data-en="Commercial partnership facilitation">Facilitation de partenariats commerciaux</li>
+      <li data-fr="Appui juridique, fiscal et administratif" data-en="Legal, tax and administrative support">Appui juridique, fiscal et administratif</li>
+      <li data-fr="Formation et renforcement des capacités" data-en="Training and capacity building">Formation et renforcement des capacités</li>
+    </ul>
+    <p style="margin-top:24px"><a href="#contact" onclick="closeMod('modal-sec-services')" style="background:var(--gold);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block" data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</a></p>
+  </div>
+</div>
+
+</body>
+</html>
