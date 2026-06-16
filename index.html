@@ -192,6 +192,13 @@
     .hero .grid,.about-grid,.contact-grid{grid-template-columns:1fr}
     .founder{order:-1}
   }
+
+  /* Partenaires */
+  .partenaires{background:var(--navy-deep);color:#fff}
+  .partenaires .sec-head h2{color:#fff}
+  .partenaires .sec-head .eyebrow,.partenaires .sec-head .eyebrow::before{color:var(--gold-bright);background:var(--gold)}
+  .partenaires .contact-grid select{width:100%;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.09);color:#fff;font-size:15px;-webkit-appearance:none;appearance:none;cursor:pointer;margin-bottom:0}
+  .partenaires .contact-grid select option{color:#111;background:#fff}
 </style>
 </head>
 <body>
@@ -213,7 +220,7 @@
       <button onclick="setLang('fr')" id="b-fr" class="active" data-lang="fr">FR</button>
       <button onclick="setLang('en')" id="b-en" data-lang="en">EN</button>
     </div>
-    <a href="#contact" class="cta-nav" data-fr="Démarrer un projet" data-en="Start a project">Démarrer un projet</a>
+    <a href="#partenaires" class="cta-nav" data-fr="Devenir partenaire" data-en="Become a Partner">Devenir partenaire</a>
   </div>
   <button class="burger" onclick="document.querySelector('.navlinks').style.display='flex'">☰</button>
 </nav></div></header>
@@ -327,6 +334,56 @@
       <h3 data-fr="Bâtir des ponts durables" data-en="Building lasting bridges">Bâtir des ponts durables</h3>
       <blockquote data-fr="« L'Afrique n'a pas besoin d'intermédiaires de plus — elle a besoin de partenaires de confiance qui comprennent ses marchés et savent les connecter au monde. C'est notre raison d'être. »" data-en="“Africa doesn't need more middlemen — it needs trusted partners who understand its markets and know how to connect them to the world. That's our purpose.”">« L'Afrique n'a pas besoin d'intermédiaires de plus — elle a besoin de partenaires de confiance qui comprennent ses marchés et savent les connecter au monde. C'est notre raison d'être. »</blockquote>
     </div>
+  </div>
+</div></section>
+
+<!-- Partenaires -->
+<section id="partenaires" class="partenaires"><div class="wrap">
+  <div class="sec-head reveal">
+    <span class="eyebrow" data-fr="Partenaires" data-en="Partners">Partenaires</span>
+    <h2 data-fr="Devenez partenaire AFRICAViT" data-en="Become an AFRICAViT Partner">Devenez partenaire AFRICAViT</h2>
+    <p data-fr="Rejoignez notre réseau de partenaires stratégiques et contribuez au développement des affaires entre l'Afrique et le reste du monde." data-en="Join our strategic partner network and help drive business between Africa and the world.">Rejoignez notre réseau de partenaires stratégiques et contribuez au développement des affaires entre l'Afrique et le reste du monde.</p>
+  </div>
+  <div class="contact-grid reveal">
+    <div>
+      <h3 style="color:var(--gold-bright);margin-bottom:20px" data-fr="Pourquoi devenir partenaire ?" data-en="Why become a partner?">Pourquoi devenir partenaire ?</h3>
+      <ul style="list-style:none;padding:0;margin:0 0 24px">
+        <li style="margin-bottom:14px;display:flex;gap:10px"><span style="color:var(--gold-bright)">◆</span><span data-fr="Accès au réseau international d'entreprises africaines" data-en="Access to our international network of African companies">Accès au réseau international d'entreprises africaines</span></li>
+        <li style="margin-bottom:14px;display:flex;gap:10px"><span style="color:var(--gold-bright)">◆</span><span data-fr="Opportunités de mise en relation et co-développement" data-en="Business matching and co-development opportunities">Opportunités de mise en relation et co-développement</span></li>
+        <li style="margin-bottom:14px;display:flex;gap:10px"><span style="color:var(--gold-bright)">◆</span><span data-fr="Visibilité sur la plateforme AFRICAViT" data-en="Visibility on the AFRICAViT platform">Visibilité sur la plateforme AFRICAViT</span></li>
+        <li style="margin-bottom:14px;display:flex;gap:10px"><span style="color:var(--gold-bright)">◆</span><span data-fr="Accès aux missions économiques et investissements" data-en="Access to economic missions and investments">Accès aux missions économiques et investissements</span></li>
+      </ul>
+    </div>
+    <form name="partenaire" method="POST" netlify netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="partenaire">
+      <p style="display:none"><input name="bot-field"></p>
+      <input type="text" name="nom" placeholder="Nom complet *" data-fr-ph="Nom complet *" data-en-ph="Full name *" required>
+      <input type="email" name="email" placeholder="Email *" data-fr-ph="Email *" data-en-ph="Email *" required>
+      <input type="tel" name="telephone" placeholder="Téléphone / WhatsApp" data-fr-ph="Téléphone / WhatsApp" data-en-ph="Phone / WhatsApp">
+      <input type="text" name="entreprise" placeholder="Entreprise / Organisation" data-fr-ph="Entreprise / Organisation" data-en-ph="Company / Organisation">
+      <input type="text" name="pays" placeholder="Pays" data-fr-ph="Pays" data-en-ph="Country">
+      <select name="secteur">
+        <option value="" disabled selected>Secteur d'activité</option>
+        <option>Commerce &amp; Distribution</option>
+        <option>Agriculture &amp; Agroalimentaire</option>
+        <option>BTP &amp; Immobilier</option>
+        <option>Finance &amp; Investissement</option>
+        <option>Technologies &amp; Innovation</option>
+        <option>Logistique &amp; Transport</option>
+        <option>Santé &amp; Pharmacie</option>
+        <option>Autre</option>
+      </select>
+      <select name="type_partenariat">
+        <option value="" disabled selected>Type de partenariat</option>
+        <option>Représentation commerciale</option>
+        <option>Investissement</option>
+        <option>Distribution &amp; Négoce</option>
+        <option>Conseil &amp; Expertise</option>
+        <option>Autre</option>
+      </select>
+      <textarea name="message" rows="3" placeholder="Décrivez votre projet de partenariat" data-fr-ph="Décrivez votre projet de partenariat" data-en-ph="Describe your partnership project"></textarea>
+      <button type="submit" data-fr="Soumettre ma candidature" data-en="Submit my application">Soumettre ma candidature</button>
+    </form>
   </div>
 </div></section>
 
@@ -751,3 +808,4 @@
 
 </body>
 </html>
+ 
