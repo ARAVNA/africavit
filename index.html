@@ -498,11 +498,14 @@
 </footer>
 
 <script>
+  function safeSet(el, val) {
+    if (/<[a-z][\s\S]*>/i.test(val)) { el.innerHTML = val; } else { el.textContent = val; }
+  }
   // Language switcher
   function setLang(lang) {
     document.querySelectorAll('[data-fr]').forEach(el => {
       const val = lang === 'fr' ? el.dataset.fr : el.dataset.en;
-      if (val !== undefined) el.innerHTML = val;
+      if (val !== undefined) safeSet(el, val);
     });
     // Update placeholder text for form inputs
     document.querySelectorAll('[data-fr-ph]').forEach(el => {
