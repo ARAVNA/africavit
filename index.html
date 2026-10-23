@@ -217,6 +217,12 @@
   .form-sent{background:rgba(16,102,63,.18);border:1px solid #10663f;color:#c8f0d8;padding:20px 24px;border-radius:10px;font-size:16px;text-align:center}
   .form-error{background:rgba(180,30,30,.15);border:1px solid rgba(180,30,30,.4);color:#f8a0a0;padding:10px 14px;border-radius:8px;font-size:14px;margin-bottom:8px}
 </style>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AFRICAViT">
 </head>
 <body>
 
@@ -898,6 +904,48 @@
   </div>
 </div>
 
+
+<!-- Application installable (PWA) -->
+<div id="install-app" style="display:none;position:fixed;left:12px;right:12px;bottom:16px;z-index:150;max-width:380px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 32px rgba(6,21,42,.25);padding:14px;gap:12px;align-items:flex-start">
+  <img src="/icons/icon-192.png" alt="" width="46" height="46" style="border-radius:10px;flex-shrink:0">
+  <div style="flex:1;font-size:14px;line-height:1.4">
+    <b data-fr="Installez l'application AFRICAViT" data-en="Install the AFRICAViT app">Installez l'application AFRICAViT</b>
+    <p id="install-app-text" style="color:var(--muted);margin-top:2px" data-fr="Accès direct depuis votre écran d'accueil." data-en="Direct access from your home screen.">Accès direct depuis votre écran d'accueil.</p>
+    <p id="install-app-ios" style="display:none;color:var(--muted);margin-top:2px" data-fr="Dans Safari : touchez Partager ⬆️ puis « Sur l'écran d'accueil »." data-en="In Safari: tap Share ⬆️ then “Add to Home Screen”.">Dans Safari : touchez Partager ⬆️ puis « Sur l'écran d'accueil ».</p>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="install-app-go" style="background:var(--navy);color:var(--gold-bright);border:0;padding:9px 16px;border-radius:9px;font:600 14px 'Outfit',sans-serif;cursor:pointer" data-fr="Installer" data-en="Install">Installer</button>
+      <button id="install-app-later" style="background:none;border:0;color:var(--muted);font:14px 'Outfit',sans-serif;cursor:pointer" data-fr="Plus tard" data-en="Later">Plus tard</button>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(function () {});
+  var box = document.getElementById('install-app'), KEY = 'africavit_install_dismissed', deferred = null;
+  var installed = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  var dismissed = false;
+  try { dismissed = Date.now() - Number(localStorage.getItem(KEY) || 0) < 14 * 86400000; } catch (e) {}
+  function hide() { box.style.display = 'none'; try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
+  document.getElementById('install-app-later').onclick = hide;
+  document.getElementById('install-app-go').onclick = function () {
+    if (!deferred) return hide();
+    deferred.prompt();
+    deferred.userChoice.then(hide);
+  };
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    if (!installed && !dismissed) setTimeout(function () { box.style.display = 'flex'; }, 8000);
+  });
+  window.addEventListener('appinstalled', function () { box.style.display = 'none'; });
+  if (!installed && !dismissed && /iphone|ipad|ipod/i.test(navigator.userAgent)) {
+    document.getElementById('install-app-text').style.display = 'none';
+    document.getElementById('install-app-ios').style.display = 'block';
+    document.getElementById('install-app-go').style.display = 'none';
+    setTimeout(function () { box.style.display = 'flex'; }, 8000);
+  }
+})();
+</script>
 </body>
 </html>
  
