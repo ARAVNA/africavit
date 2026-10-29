@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AFRICAViT SARL — Commerce international, représentation commerciale, conseil stratégique et facilitation d'investissements en Côte d'Ivoire et Afrique de l'Ouest.">
+<meta name="description" content="AFRICAViT SARL — Commerce international, représentation commerciale, conseil stratégique et facilitation d'investissements en Côte d'Ivoire et Afrique de l'Ouest. Éditeur d'AKILI ERP, d'IVOORIA et d'INTELLIGENCIA MEDIA.">
 <meta property="og:title" content="AFRICAViT SARL — Votre passerelle vers l'Afrique">
 <meta property="og:description" content="Commerce international, représentation commerciale, conseil stratégique et facilitation d'investissements en Côte d'Ivoire et Afrique de l'Ouest.">
 <meta property="og:type" content="website">
@@ -12,6 +12,46 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://www.africavit.com">
 <title>AFRICAViT SARL — Votre passerelle vers l'Afrique</title>
+
+<!--
+  Données structurées : relient officiellement la société à ses trois
+  plateformes. Sans cela, akilierp.africavit.com et ivooria.africavit.com
+  n'ont aucune société identifiable derrière eux aux yeux d'un moteur de
+  recherche — ni d'un partenaire qui vérifie.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AFRICAViT",
+  "legalName": "AFRICAViT SARL",
+  "url": "https://www.africavit.com",
+  "logo": "https://www.africavit.com/icons/icon-512.png",
+  "email": "contact@africavit.com",
+  "telephone": "+225 27 22 35 33 27",
+  "foundingDate": "2026",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Cocody-Angré, Lot 4527",
+    "addressLocality": "Abidjan",
+    "addressCountry": "CI"
+  },
+  "identifier": [
+    { "@type": "PropertyValue", "name": "RCCM", "value": "CI-ABJ-03-2026-B12-06782" },
+    { "@type": "PropertyValue", "name": "NCC", "value": "2606664 R" },
+    { "@type": "PropertyValue", "name": "IDU", "value": "CI-2026-0076905 F" }
+  ],
+  "brand": [
+    { "@type": "Brand", "name": "AKILI ERP", "url": "https://akilierp.africavit.com" },
+    { "@type": "Brand", "name": "IVOORIA", "url": "https://ivooria.africavit.com" },
+    { "@type": "Brand", "name": "INTELLIGENCIA MEDIA", "url": "https://intelligenciamedia.com" }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/company/121494047/",
+    "https://www.youtube.com/channel/UCVtE7RNPKcMLnYagp7Z9D5Q"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -144,6 +184,24 @@
   .sector-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:600;color:var(--gold-bright);transition:gap .2s;cursor:pointer}
   .sector-link:hover{gap:10px}
 
+  /* Plateformes du groupe */
+  .plat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
+  .plat{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 26px;transition:transform .25s,border-color .25s,box-shadow .25s}
+  .plat:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 14px 34px rgba(11,31,58,.09)}
+  .plat-mark{width:46px;height:46px;border-radius:11px;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:700;font-size:22px;color:var(--gold-bright);border:1px solid var(--gold);margin-bottom:18px}
+  .plat-akili{background:linear-gradient(135deg,#0b1f3a,#06152a)}
+  .plat-ivooria{background:linear-gradient(135deg,#10663f,#0a4a2c)}
+  .plat-imedia{background:linear-gradient(135deg,#6b3fa0,#432566)}
+  .plat h3{font-size:21px;color:var(--navy);margin-bottom:4px}
+  .plat .plat-tag{display:block;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+  .plat p{font-size:14.5px;color:var(--muted);margin-bottom:16px}
+  .plat ul{list-style:none;margin-bottom:22px}
+  .plat li{position:relative;padding-left:18px;font-size:13.5px;color:var(--ink);margin-bottom:7px}
+  .plat li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+  .plat-go{margin-top:auto;display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--navy);color:#fff;padding:11px 20px;border-radius:9px;font-size:14px;font-weight:600;transition:background .2s,gap .2s}
+  .plat-go:hover{background:var(--gold);color:var(--navy-deep);gap:12px}
+  .plat-note{margin-top:34px;font-size:13.5px;color:var(--muted);max-width:720px}
+
   /* About */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
   .about-grid p{color:var(--muted);margin-bottom:16px;font-size:16px}
@@ -177,7 +235,11 @@
   .fsocial{display:flex;gap:14px}
   .fsocial a{width:36px;height:36px;border:1px solid var(--line);border-radius:8px;display:grid;place-items:center;color:var(--gold-bright);transition:background .2s}
   .fsocial a:hover{background:var(--gold);color:var(--navy-deep)}
-  .fbottom{text-align:center;margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:13px}
+  .fplat{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 22px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);font-size:13px}
+  .fplat>span{color:rgba(255,255,255,.45);letter-spacing:1.2px;text-transform:uppercase;font-size:11.5px}
+  .fplat a{color:var(--gold-bright);font-weight:600;transition:color .2s}
+  .fplat a:hover{color:#fff}
+  .fbottom{text-align:center;margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:13px}
 
 
   /* Welcome section */
@@ -200,7 +262,14 @@
   .reveal.in{opacity:1;transform:none}
 
   @media(max-width:860px){
-    .navlinks{display:none}
+    /* Menu téléphone : les liens doivent s'empiler. En display:flex
+       hérité du bureau, ils s'alignaient sur 866 px de large — la page
+       dérapait sur le côté et la moitié des liens était hors écran. */
+    .navlinks{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--navy-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 0;box-shadow:0 18px 30px rgba(0,0,0,.28)}
+    .navlinks.open{display:flex}
+    .navlinks a{padding:13px 28px;font-size:16px}
+    .navlinks .lang{padding:10px 28px}
+    .navlinks .cta-nav{margin:8px 28px 10px;text-align:center}
     .burger{display:block}
     .hero .grid,.about-grid,.contact-grid{grid-template-columns:1fr}
     .founder{order:-1}
@@ -217,6 +286,10 @@
   .form-sent{background:rgba(16,102,63,.18);border:1px solid #10663f;color:#c8f0d8;padding:20px 24px;border-radius:10px;font-size:16px;text-align:center}
   .form-error{background:rgba(180,30,30,.15);border:1px solid rgba(180,30,30,.4);color:#f8a0a0;padding:10px 14px;border-radius:8px;font-size:14px;margin-bottom:8px}
 </style>
+
+<!-- Sans JavaScript, les sections en .reveal resteraient à opacity:0 :
+     la page s'afficherait vide. Ce repli les rend visibles. -->
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -237,6 +310,7 @@
   <div class="navlinks">
     <a href="#services" data-fr="Services" data-en="Services">Services</a>
     <a href="#secteurs" data-fr="Secteurs" data-en="Sectors">Secteurs</a>
+    <a href="#plateformes" data-fr="Plateformes" data-en="Platforms">Plateformes</a>
     <a href="#apropos" data-fr="À propos" data-en="About">À propos</a>
     <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
     <div class="lang">
@@ -342,6 +416,60 @@
     <div class="sector"><div class="ic">📦</div><h4 data-fr="Logistique" data-en="Logistics">Logistique</h4><p data-fr="Chaîne d'approvisionnement" data-en="Supply chain">Chaîne d'approvisionnement</p><a href="#" onclick="openMod('modal-sec-logistique');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
     <div class="sector"><div class="ic">🤝</div><h4 data-fr="Services" data-en="Services">Services</h4><p data-fr="Conseil et facilitation" data-en="Consulting and facilitation">Conseil et facilitation</p><a href="#" onclick="openMod('modal-sec-services');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
   </div>
+</div></section>
+
+<!-- Plateformes du groupe -->
+<section id="plateformes"><div class="wrap">
+  <div class="sec-head reveal">
+    <span class="eyebrow" data-fr="Nos plateformes" data-en="Our platforms">Nos plateformes</span>
+    <h2 data-fr="Les outils que nous avons construits" data-en="The tools we have built">Les outils que nous avons construits</h2>
+    <p data-fr="AFRICAViT ne se limite pas au conseil : nous développons et exploitons nos propres plateformes, utilisées chaque jour par des entreprises et des particuliers en Côte d'Ivoire." data-en="AFRICAViT does more than advise: we build and operate our own platforms, used every day by businesses and individuals in Côte d'Ivoire.">AFRICAViT ne se limite pas au conseil : nous développons et exploitons nos propres plateformes, utilisées chaque jour par des entreprises et des particuliers en Côte d'Ivoire.</p>
+  </div>
+
+  <div class="plat-grid reveal">
+
+    <div class="plat">
+      <div class="plat-mark plat-akili">A</div>
+      <h3>AKILI ERP</h3>
+      <span class="plat-tag" data-fr="Logiciel de gestion" data-en="Business management software">Logiciel de gestion</span>
+      <p data-fr="Un logiciel de gestion pensé pour les PME d'Afrique francophone, en francs CFA et conforme au plan comptable SYSCOHADA révisé." data-en="Management software designed for SMEs in French-speaking Africa, in CFA francs and compliant with the revised SYSCOHADA chart of accounts.">Un logiciel de gestion pensé pour les PME d'Afrique francophone, en francs CFA et conforme au plan comptable SYSCOHADA révisé.</p>
+      <ul>
+        <li data-fr="Facturation, achats, stocks et trésorerie" data-en="Invoicing, purchases, inventory and cash">Facturation, achats, stocks et trésorerie</li>
+        <li data-fr="Comptabilité OHADA : journal, grand livre, balance, bilan" data-en="OHADA accounting: journal, general ledger, trial balance, balance sheet">Comptabilité OHADA : journal, grand livre, balance, bilan</li>
+        <li data-fr="Paie ivoirienne : CNPS et ITS déjà paramétrés" data-en="Ivorian payroll: CNPS and ITS already configured">Paie ivoirienne : CNPS et ITS déjà paramétrés</li>
+      </ul>
+      <a class="plat-go" href="https://akilierp.africavit.com" target="_blank" rel="noopener" data-fr="Ouvrir AKILI ERP →" data-en="Open AKILI ERP →">Ouvrir AKILI ERP →</a>
+    </div>
+
+    <div class="plat">
+      <div class="plat-mark plat-ivooria">i</div>
+      <h3>IVOORIA</h3>
+      <span class="plat-tag" data-fr="Place de marché" data-en="Marketplace">Place de marché</span>
+      <p data-fr="La place de marché d'annonces de l'Afrique de l'Ouest : immobilier, véhicules, emploi, boutiques et services professionnels." data-en="West Africa's classifieds marketplace: real estate, vehicles, jobs, shops and professional services.">La place de marché d'annonces de l'Afrique de l'Ouest : immobilier, véhicules, emploi, boutiques et services professionnels.</p>
+      <ul>
+        <li data-fr="Inscription et publication gratuites, sans limite d'annonces" data-en="Free registration and listings, no limit on the number of ads">Inscription et publication gratuites, sans limite d'annonces</li>
+        <li data-fr="Chaque annonce est vérifiée avant sa mise en ligne" data-en="Every listing is reviewed before going live">Chaque annonce est vérifiée avant sa mise en ligne</li>
+        <li data-fr="Paiements par Wave, Orange Money et MTN MoMo" data-en="Payments via Wave, Orange Money and MTN MoMo">Paiements par Wave, Orange Money et MTN MoMo</li>
+      </ul>
+      <a class="plat-go" href="https://ivooria.africavit.com" target="_blank" rel="noopener" data-fr="Ouvrir IVOORIA →" data-en="Open IVOORIA →">Ouvrir IVOORIA →</a>
+    </div>
+
+    <div class="plat">
+      <div class="plat-mark plat-imedia">M</div>
+      <h3>INTELLIGENCIA MEDIA</h3>
+      <span class="plat-tag" data-fr="Agence digitale & IA" data-en="Digital & AI agency">Agence digitale &amp; IA</span>
+      <p data-fr="Notre agence digitale à Abidjan : création de sites et d'applications, production audiovisuelle et automatisation par l'intelligence artificielle." data-en="Our digital agency in Abidjan: websites and apps, video production, and automation powered by artificial intelligence.">Notre agence digitale à Abidjan : création de sites et d'applications, production audiovisuelle et automatisation par l'intelligence artificielle.</p>
+      <ul>
+        <li data-fr="Sites internet, applications web et mobiles" data-en="Websites, web and mobile applications">Sites internet, applications web et mobiles</li>
+        <li data-fr="Production vidéo et studio d'enregistrement" data-en="Video production and recording studio">Production vidéo et studio d'enregistrement</li>
+        <li data-fr="Automatisation et formation à l'IA" data-en="Automation and AI training">Automatisation et formation à l'IA</li>
+      </ul>
+      <a class="plat-go" href="https://intelligenciamedia.com" target="_blank" rel="noopener" data-fr="Ouvrir IMEDIA →" data-en="Open IMEDIA →">Ouvrir IMEDIA →</a>
+    </div>
+
+  </div>
+
+  <p class="plat-note reveal" data-fr="AKILI ERP, IVOORIA et INTELLIGENCIA MEDIA sont des marques et produits d'AFRICAViT SARL, société immatriculée à Abidjan sous le RCCM CI-ABJ-03-2026-B12-06782." data-en="AKILI ERP, IVOORIA and INTELLIGENCIA MEDIA are brands and products of AFRICAViT SARL, registered in Abidjan under RCCM CI-ABJ-03-2026-B12-06782.">AKILI ERP, IVOORIA et INTELLIGENCIA MEDIA sont des marques et produits d'AFRICAViT SARL, société immatriculée à Abidjan sous le RCCM CI-ABJ-03-2026-B12-06782.</p>
 </div></section>
 
 <!-- About -->
@@ -499,6 +627,12 @@
     <a href="https://wa.me/2250574199760" target="_blank" aria-label="WhatsApp">✆</a>
   </div>
 </div>
+<div class="wrap fplat">
+  <span data-fr="Nos plateformes" data-en="Our platforms">Nos plateformes</span>
+  <a href="https://akilierp.africavit.com" target="_blank" rel="noopener">AKILI ERP</a>
+  <a href="https://ivooria.africavit.com" target="_blank" rel="noopener">IVOORIA</a>
+  <a href="https://intelligenciamedia.com" target="_blank" rel="noopener">INTELLIGENCIA MEDIA</a>
+</div>
 <div class="wrap fbottom">
   <span data-fr="© 2026 AFRICAViT SARL — Tous droits réservés · Abidjan, Côte d'Ivoire" data-en="© 2026 AFRICAViT SARL — All rights reserved · Abidjan, Côte d'Ivoire">© 2026 AFRICAViT SARL — Tous droits réservés · Abidjan, Côte d'Ivoire</span>
   <span style="margin:0 10px;opacity:.4">·</span>
@@ -555,10 +689,19 @@
   // Mobile burger menu
   const burger = document.querySelector('.burger');
   const navlinks = document.querySelector('.navlinks');
-  if (burger) {
-    burger.addEventListener('click', () => {
-      navlinks.style.display = navlinks.style.display === 'flex' ? 'none' : 'flex';
-    });
+  if (burger && navlinks) {
+    // Une classe, pas un style en ligne : c'est la feuille de style qui
+    // décide de l'empilement sur téléphone.
+    const basculer = (ouvrir) => {
+      const etat = ouvrir === undefined ? !navlinks.classList.contains('open') : !!ouvrir;
+      navlinks.classList.toggle('open', etat);
+      burger.setAttribute('aria-expanded', String(etat));
+      burger.textContent = etat ? '✕' : '☰';
+    };
+    burger.addEventListener('click', () => basculer());
+    // Refermer après avoir choisi une destination, sinon le menu reste
+    // posé sur la section qu'on vient d'ouvrir.
+    navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => basculer(false)));
   }
 
   function openMod(id){
