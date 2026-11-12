@@ -180,7 +180,7 @@
   .sector{border:1px solid var(--line);border-radius:13px;padding:26px 22px;transition:transform .25s,border-color .25s}
   .sector:hover{transform:translateY(-4px);border-color:var(--gold)}
   .sector .ic{font-size:26px;margin-bottom:12px}
-  .sector h4{font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--gold-bright);margin-bottom:6px}
+  .sector h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--gold-bright);margin-bottom:6px}
   .sector p{font-size:13px;color:rgba(255,255,255,.6)}
   .sector-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:600;color:var(--gold-bright);transition:gap .2s;cursor:pointer}
   .sector-link:hover{gap:10px}
@@ -322,6 +322,7 @@
   </div>
   <button class="burger" aria-label="Menu" aria-expanded="false">☰</button>
 </nav></div></header>
+<main>
 
 <!-- Hero -->
 <section class="hero"><div class="wrap"><div class="grid">
@@ -411,11 +412,11 @@
     <h2 data-fr="Les filières où nous créons de la valeur" data-en="The sectors where we create value">Les filières où nous créons de la valeur</h2>
   </div>
   <div class="sec-grid reveal">
-    <div class="sector"><div class="ic">🌾</div><h4 data-fr="Agriculture" data-en="Agriculture">Agriculture</h4><p data-fr="Foncier, filières et transformation" data-en="Land, value chains and processing">Foncier, filières et transformation</p><a href="#" onclick="openMod('modal-sec-agriculture');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="sector"><div class="ic">🚢</div><h4 data-fr="Négoce" data-en="Trading">Négoce</h4><p data-fr="Import-export de marchandises" data-en="Import-export of goods">Import-export de marchandises</p><a href="#" onclick="openMod('modal-sec-negoce');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="sector"><div class="ic">🏗️</div><h4 data-fr="Investissement" data-en="Investment">Investissement</h4><p data-fr="Mobilisation de capitaux" data-en="Capital mobilization">Mobilisation de capitaux</p><a href="#" onclick="openMod('modal-sec-investissement');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="sector"><div class="ic">📦</div><h4 data-fr="Logistique" data-en="Logistics">Logistique</h4><p data-fr="Chaîne d'approvisionnement" data-en="Supply chain">Chaîne d'approvisionnement</p><a href="#" onclick="openMod('modal-sec-logistique');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
-    <div class="sector"><div class="ic">🤝</div><h4 data-fr="Services" data-en="Services">Services</h4><p data-fr="Conseil et facilitation" data-en="Consulting and facilitation">Conseil et facilitation</p><a href="#" onclick="openMod('modal-sec-services');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="sector"><div class="ic">🌾</div><h3 data-fr="Agriculture" data-en="Agriculture">Agriculture</h3><p data-fr="Foncier, filières et transformation" data-en="Land, value chains and processing">Foncier, filières et transformation</p><a href="#" onclick="openMod('modal-sec-agriculture');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="sector"><div class="ic">🚢</div><h3 data-fr="Négoce" data-en="Trading">Négoce</h3><p data-fr="Import-export de marchandises" data-en="Import-export of goods">Import-export de marchandises</p><a href="#" onclick="openMod('modal-sec-negoce');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="sector"><div class="ic">🏗️</div><h3 data-fr="Investissement" data-en="Investment">Investissement</h3><p data-fr="Mobilisation de capitaux" data-en="Capital mobilization">Mobilisation de capitaux</p><a href="#" onclick="openMod('modal-sec-investissement');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="sector"><div class="ic">📦</div><h3 data-fr="Logistique" data-en="Logistics">Logistique</h3><p data-fr="Chaîne d'approvisionnement" data-en="Supply chain">Chaîne d'approvisionnement</p><a href="#" onclick="openMod('modal-sec-logistique');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
+    <div class="sector"><div class="ic">🤝</div><h3 data-fr="Services" data-en="Services">Services</h3><p data-fr="Conseil et facilitation" data-en="Consulting and facilitation">Conseil et facilitation</p><a href="#" onclick="openMod('modal-sec-services');return false;" class="sector-link" data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</a></div>
   </div>
 </div></section>
 
@@ -514,7 +515,7 @@
       <input type="email" name="email" placeholder="Email *" data-fr-ph="Email *" data-en-ph="Email *" required>
       <input type="tel" name="telephone" placeholder="Téléphone / WhatsApp" data-fr-ph="Téléphone / WhatsApp" data-en-ph="Phone / WhatsApp">
       <input type="text" name="entreprise" placeholder="Entreprise / Organisation" data-fr-ph="Entreprise / Organisation" data-en-ph="Company / Organisation">
-      <select name="pays">
+      <select name="pays" aria-label="Pays">
         <option value="" disabled selected data-fr="Pays" data-en="Country">Pays</option>
         <option>Côte d'Ivoire</option>
         <option>Sénégal</option>
@@ -566,7 +567,7 @@
         <option>Émirats arabes unis</option>
         <option>Autre</option>
       </select>
-      <select name="secteur">
+      <select name="secteur" aria-label="Secteur d'activité">
         <option value="" disabled selected>Secteur d'activité</option>
         <option>Commerce &amp; Distribution</option>
         <option>Agriculture &amp; Agroalimentaire</option>
@@ -577,7 +578,7 @@
         <option>Santé &amp; Pharmacie</option>
         <option>Autre</option>
       </select>
-      <select name="type_partenariat">
+      <select name="type_partenariat" aria-label="Type de partenariat">
         <option value="" disabled selected>Type de partenariat</option>
         <option>Représentation commerciale</option>
         <option>Investissement</option>
@@ -617,6 +618,7 @@
   </div>
 </div></section>
 
+</main>
 <!-- Footer -->
 <footer><div class="wrap">
   <a class="brand" href="#top"><span class="logo-mark">A</span><b>AFRICA<span>ViT</span></b></a>
